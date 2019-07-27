@@ -9,40 +9,40 @@ $(document).ready(function() {
             var d = d3.timeParse("%Y-%m-%dT%H:%M:%S")(csv_row['timestamp']);
             return {
                 date: d,
-                day: new Date(d.getFullYear(), d.getMonth(), d.getDay()),
-                month: new Date(d.getFullYear(), d.getMonth()),
-                year: new Date(d.getFullYear()),
+                day: new Date(d.getFullYear(), d.getMonth(), d.getDate()),
+                month: new Date(d.getFullYear(), d.getMonth(), 1),
+                year: new Date(d.getFullYear(), 0, 1),
                 power: csv_row['power[kW]'],
+                energy: csv_row['power[kW]'] * 0.25,
             }
         },
-
-
+        
         // Now I can use this dataset:
         function(data) {
-            var filteredData = data.filter(function(d) {
-                return  (d.date >= d3.timeParse("%Y-%m-%dT%H:%M:%S")("2019-05-01T00:00:00")) &&
-                        (d.date < d3.timeParse("%Y-%m-%dT%H:%M:%S")("2019-05-30T00:00:00"));
+            var minDate = d3.timeParse("%Y-%m-%dT%H:%M:%S")("2019-05-01T00:00:00");
+            var maxDate = d3.timeParse("%Y-%m-%dT%H:%M:%S")("2019-06-01T00:00:00");
+            var month = data.filter(function(d) {
+                return  (d.date >= minDate) &&
+                        (d.date < maxDate);
             });
-            console.log(filteredData);
-            
-            var ndx = crossfilter(data);
-            
+            var ndx = crossfilter(month);
+
             var dim = ndx.dimension(dc.pluck('day'));
-            var group = dim.group();
+            var group = dim.group().reduceSum(dc.pluck('energy'));
 
             var chart = dc.barChart("#g_monthly")
-                .width(400)
-                .height(300)
+                .width(460)
+                .height(400)
                 .margins({ top: 10, right: 50, bottom: 30, left: 50 })
                 .dimension(dim)
                 .group(group)
                 .transitionDuration(500)
-                .x(d3.scaleBand())
                 .elasticX(true)
+                .x(d3.scaleBand())
+                // .x(d3.scaleTime().domain([minDate,maxDate]))
                 .xUnits(dc.units.ordinal)
-                // .xUnits(d3.time.days)
-                .xAxisLabel("Month")
-                .yAxis().ticks(20);
+                .xAxisLabel("Day per Month")
+                .xAxis().tickFormat(d3.timeFormat('%e'));
             dc.renderAll();
         }
     );
