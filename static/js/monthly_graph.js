@@ -26,7 +26,14 @@ $(document).ready(function() {
                         (d.date < maxDate);
             });
             var ndx = crossfilter(month);
-
+            
+        function show_month_year(k,v){
+            if (k){
+                return"k + v + kwh produced"
+            }
+            
+        }
+            var title = d3.timeFormat('%B, %Y kWh produced')(data[0].date);
             var dim = ndx.dimension(dc.pluck('day'));
             var group = dim.group().reduceSum(dc.pluck('energy'));
 
@@ -41,10 +48,32 @@ $(document).ready(function() {
                 .x(d3.scaleBand())
                 // .x(d3.scaleTime().domain([minDate,maxDate]))
                 .xUnits(dc.units.ordinal)
-                .xAxisLabel("Day per Month")
+                .xAxisLabel(title)
                 .xAxis().tickFormat(d3.timeFormat('%e'));
             dc.renderAll();
         }
     );
+    
+    $("#datepicker_month").datepicker({
+    format: 'mm/yyyy',
+    startView: "months",
+    minViewMode:"months"
+    });
+    $("#datepicker_month").datepicker('setDate', 
+        d3.timeParse("%Y-%m-%dT%H:%M:%S")("2019-05-01T00:00:00")
+    );
+
+        $("#prev").click(function() {
+            var date = $('#datepicker_month').datepicker('getDate', '-1d');
+            date.setMonth(date.getMonth() - 1);
+            $('#datepicker_month').datepicker('setDate', date);
+        })
+        
+        
+        $("#next").click(function() {
+            var date = $('#datepicker_month').datepicker('getDate', '+1d');
+            date.setMonth(date.getMonth() + 1);
+            $('#datepicker_month').datepicker('setDate', date);
+        })
 
 })
