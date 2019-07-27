@@ -1,3 +1,6 @@
+// A $( document ).ready() block.
+$( document ).ready(function() {
+
 // set the dimensions and margins of the graph
 var margin = { top: 10, right: 30, bottom: 30, left: 50 },
   width = 460 - margin.left - margin.right,
@@ -96,3 +99,4 @@ d3.csv("data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
       });
     });
   })
+});
