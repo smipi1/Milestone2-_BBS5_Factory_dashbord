@@ -1,102 +1,109 @@
 // A $( document ).ready() block.
-$( document ).ready(function() {
+$(document).ready(function() {
+  var minDate = $('#datetimepicker2').datepicker('setDate',
+    d3.timeParse("%Y-%m-%dT%H:%M:%S")("2019-05-01T00:00:00")
+  )
 
-// set the dimensions and margins of the graph
-var margin = { top: 10, right: 30, bottom: 30, left: 50 },
-  width = 460 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+  //Read the data
+  d3.csv(
+    "data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
+    // When reading the csv, I must format variables:
+    formatVariables,
+    // Now I can use this dataset:
+    makeGraphs
+  );
+})
 
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform",
-    "translate(" + margin.left + "," + margin.top + ")");
+function formatVariables(csv_row) {
+  var d = d3.timeParse("%Y-%m-%dT%H:%M:%S")(csv_row['timestamp']);
+  return {
+    date: d,
+    day: new Date(d.getFullYear(), d.getMonth(), d.getDate()),
+    month: new Date(d.getFullYear(), d.getMonth(), 1),
+    year: new Date(d.getFullYear(), 0, 1),
+    power: csv_row['power[kW]'],
+    energy: csv_row['power[kW]'] * 0.25,
+  }
+}
 
-//Read the data
-d3.csv("data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
+function makeGraphs(data) {
+  var ndx = crossfilter(data);
+  
+  makeHourlyGraph(ndx);
+  makeDailyGraph(ndx);
+  makeMonthyGraph(ndx)
+  dc.renderAll();
+}
+function makeHourlyGraph(ndx) {
+  var dim = ndx.dimension(function(d){return d.date});
+  var group = dim.group().reduceSum(dc.pluck('power'));
+  var nonEmpty = remove_empty_bins(group);
+  var chart = dc.lineChart("#g_hour")
+    .width(460)
+    .height(400)
+    .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+    .dimension(dim)
+    .group(nonEmpty)
+    .transitionDuration(500)
+    .elasticX(true)
+    .elasticY(true)
+    .x(d3.scaleLinear())
+    // .x(d3.scaleTime().domain([minDate,maxDate]))
+    .xUnits(dc.units.ordinal)
+    // .xAxisLabel(day[0].date)
+    .yAxis().ticks(20)
+}
 
-  // When reading the csv, I must format variables:
-  function(d) {
-    return { date: d3.timeParse("%Y-%m-%dT%H:%M:%S")(d['timestamp']), value: d['power[kW]'] }
-  },
+function makeDailyGraph(ndx){
+  
+    // var title = d3.timeFormat('%B, %Y kWh produced')(data[0].date);
+    var dim = ndx.dimension(dc.pluck('day'));
+    var group = dim.group().reduceSum(dc.pluck('energy'));
+    var nonEmpty = remove_empty_bins(group);
+    var chart = dc.barChart("#g_day")
+                .width(460)
+                .height(400)
+                // .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+                .dimension(dim)
+                .group(nonEmpty)
+                // .transitionDuration(500)
+                .x(d3.scaleBand())
+                .xUnits(dc.units.ordinal)
+                .elasticX(true)
+                .elasticY(true);
+                // .x(d3.scaleTime().domain([minDate,maxDate]))
+                // .xAxisLabel(title)
+    chart.xAxis().tickFormat(d3.timeFormat('%e'));
+}
 
-  // Now I can use this dataset:
-  function(data) {
+function makeMonthyGraph(ndx){
+  
+    // var title = d3.timeFormat('%B, %Y kWh produced')(data[0].date);
+    var dim = ndx.dimension(dc.pluck('month'));
+    var group = dim.group().reduceSum(dc.pluck('energy'));
+    var nonEmpty = remove_empty_bins(group);
+    var chart = dc.barChart("#g_month")
+                .width(460)
+                .height(400)
+                // .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+                .dimension(dim)
+                .group(nonEmpty)
+                // .transitionDuration(500)
+                .x(d3.scaleBand())
+                .xUnits(dc.units.ordinal)
+                .elasticX(true)
+                .elasticY(true);
+                // .x(d3.scaleTime().domain([minDate,maxDate]))
+                // .xAxisLabel(title)
+    chart.xAxis().tickFormat(d3.timeFormat('%e'));
+}
 
-    // Add X axis --> it is a date format
-    var x = d3.scaleTime()
-      .domain(d3.extent(data, function(d) { return d.date; }))
-      .range([0, width]);
-
-    x.domain([
-      d3.timeParse("%Y-%m-%dT%H:%M:%S")("2019-07-18T00:00:00"),
-      d3.timeParse("%Y-%m-%dT%H:%M:%S")("2019-07-19T00:00:00")
-    ]);
-
-    var xAxis = svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
-
-    // Add Y axis
-    var y = d3.scaleLinear()
-      .domain([0, d3.max(data, function(d) { return +d.value; })])
-      .range([height, 0]);
-
-    var yAxis = svg.append("g")
-      .call(d3.axisLeft(y));
-
-    // Add a clipPath: everything out of this area won't be drawn.
-    var clip = svg.append("defs").append("svg:clipPath")
-      .attr("id", "clip")
-      .append("svg:rect")
-      .attr("width", width)
-      .attr("height", height)
-      .attr("x", 0)
-      .attr("y", 0);
-
-    // Add the area
-    var line = svg.append('g')
-      .attr("clip-path", "url(#clip)");
-
-    line
-      .append("path")
-      .datum(data)
-      .attr("class", "line")
-      .attr("fill", "#cce5df")
-      .attr("stroke", "#69b3a2")
-      .attr("stroke-width", 1.5)
-      .attr("d", d3.area()
-        .x(function(d) { return x(d.date) })
-        .y0(y(0))
-        .y1(function(d) { return y(d.value) })
-      )
-
-    $(function() {
-      $('#datetimepicker1').datepicker();
-      $('#datetimepicker1').on('changeDate', function() {
-        let min = $('#datetimepicker1').datepicker('getDate');
-        let max = new Date(min.getTime() + 24 * 60 * 60 * 1000);
-        console.log(min);
-        console.log(max);
-
-        // Update axis and line position
-        x.domain([
-          min,
-          max
-        ]);
-        xAxis.transition().duration(1000).call(d3.axisBottom(x));
-        line.select('.line')
-          .transition()
-          .duration(1000)
-          .attr("d", d3.area()
-            .x(function(d) { return x(d.date) })
-            .y0(y(0))
-            .y1(function(d) { return y(d.value) })
-          );
-      });
-    });
-  })
-});
+  function remove_empty_bins(source_group) {
+    return {
+        all:function () {
+            return source_group.all().filter(function(d) {
+                return d.value != 0;
+            });
+        }
+    };
+}
