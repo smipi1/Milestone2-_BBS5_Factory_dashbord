@@ -27,47 +27,51 @@
 </head>
 
 <body>
-
-
-    <div class="row">
-        <div id="g_hour" class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='data' class="form-control id=" field1 "" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+ <!-- Header -->
+    <header>
+        <div>
+            
+        </div>
+    </header>
+<!-- Main Content -->
+    <section class="container-fluid main-content">
+        <div class="row">
+            <div id="g_hour" class='col-sm-4'>
+                <div class="form-group">
+                    <div class="input-group date" data-provide="datepicker">
+                        <input type="text" class="form-control">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+     
+            
+            <div id="g_day" class='col-sm-4'>
+                <div class="form-group">
+                    <div class="input-group date" data-provide="datepicker">
+                        <input type="text" class="form-control">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div id="g_month" class='col-sm-4'>
+                <div class="form-group">
+                    <div class="input-group date" data-provide="datepicker">
+                        <input type="text" class="form-control">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
- 
-        
-        <div id="g_day" class='col-sm-6'>
-            <div class="form-group">
-                <button id="prev">prev</button>
-                <div class='input-group date' id='datepicker_month'>
-                    <input type='data' class="form-control id=" field1 "" />
-                    <span class="input-group-addon">
-                        <!--<span class="glyphicon glyphicon-calendar"></span>-->
-                    </span>
-                </div>
-                <button id="next">next</button>
-            </div>
-        </div>
-        
-        
-        <div id="g_month" class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker2'>
-                    <input type='data' class="form-control id=" field1 "" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+    </section>
 
 
 </body>

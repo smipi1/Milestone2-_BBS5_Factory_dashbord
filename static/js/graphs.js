@@ -12,6 +12,8 @@ $(document).ready(function() {
     // Now I can use this dataset:
     makeGraphs
   );
+  
+  $('.datepicker').datepicker();
 })
 
 function formatVariables(csv_row) {
@@ -24,7 +26,10 @@ function formatVariables(csv_row) {
     power: csv_row['power[kW]'],
     energy: csv_row['power[kW]'] * 0.25,
   }
+  
 }
+
+
 
 function makeGraphs(data) {
   var ndx = crossfilter(data);
@@ -39,19 +44,21 @@ function makeHourlyGraph(ndx) {
   var group = dim.group().reduceSum(dc.pluck('power'));
   var nonEmpty = remove_empty_bins(group);
   var chart = dc.lineChart("#g_hour")
-    .width(460)
-    .height(400)
-    .margins({ top: 10, right: 50, bottom: 30, left: 50 })
-    .dimension(dim)
-    .group(nonEmpty)
-    .transitionDuration(500)
-    .elasticX(true)
-    .elasticY(true)
-    .x(d3.scaleLinear())
-    // .x(d3.scaleTime().domain([minDate,maxDate]))
-    .xUnits(dc.units.ordinal)
-    // .xAxisLabel(day[0].date)
-    .yAxis().ticks(20)
+            .width(460)
+            .height(400)
+            .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+            .dimension(dim)
+            .group(nonEmpty)
+            .transitionDuration(500)
+            .elasticX(true)
+            .elasticY(true)
+            // .x(d3.scaleLinear())
+            .x(d3.scaleTime())
+            // .xUnits(dc.units.ordinal);
+            // .xAxisLabel(day[0].date)
+  // chart.yAxis().ticks(20);
+  chart.xAxis().ticks(d3.timeHour.every(1));
+  chart.xAxis().tickFormat(d3.timeFormat('%H'));
 }
 
 function makeDailyGraph(ndx){
@@ -63,17 +70,18 @@ function makeDailyGraph(ndx){
     var chart = dc.barChart("#g_day")
                 .width(460)
                 .height(400)
-                // .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+                .margins({ top: 10, right: 50, bottom: 30, left: 50 })
                 .dimension(dim)
                 .group(nonEmpty)
-                // .transitionDuration(500)
+                .transitionDuration(500)
                 .x(d3.scaleBand())
                 .xUnits(dc.units.ordinal)
                 .elasticX(true)
-                .elasticY(true);
-                // .x(d3.scaleTime().domain([minDate,maxDate]))
+                .elasticY(true)
+                .x(d3.scaleTime())
+                .addFilterHandler(function(filters, filter) {return [filter];});
                 // .xAxisLabel(title)
-    chart.xAxis().tickFormat(d3.timeFormat('%e'));
+    chart.xAxis().tickFormat(d3.timeFormat('%d'));
 }
 
 function makeMonthyGraph(ndx){
@@ -85,15 +93,16 @@ function makeMonthyGraph(ndx){
     var chart = dc.barChart("#g_month")
                 .width(460)
                 .height(400)
-                // .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+                .margins({ top: 10, right: 50, bottom: 30, left: 50 })
                 .dimension(dim)
                 .group(nonEmpty)
-                // .transitionDuration(500)
+                .transitionDuration(500)
                 .x(d3.scaleBand())
                 .xUnits(dc.units.ordinal)
                 .elasticX(true)
-                .elasticY(true);
-                // .x(d3.scaleTime().domain([minDate,maxDate]))
+                .elasticY(true)
+                .x(d3.scaleTime())
+                .addFilterHandler(function(filters, filter) {return [filter];});
                 // .xAxisLabel(title)
     chart.xAxis().tickFormat(d3.timeFormat('%e'));
 }
@@ -102,7 +111,7 @@ function makeMonthyGraph(ndx){
     return {
         all:function () {
             return source_group.all().filter(function(d) {
-                return d.value != 0;
+                return Math.abs(d.value) > 0.0001;
             });
         }
     };
