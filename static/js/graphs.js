@@ -57,7 +57,7 @@ function updateGraphs(ndx, value_type) {
     hourly: makeHourlyGraph(ndx),
     daily: makeDailyGraph(ndx, value_type),
     monthly: makeMonthyGraph(ndx, value_type),
-//  yearly: makeYearGraph(ndx),
+    yearly: makeYearGraph(ndx, value_type),
     yearSelector: makeYearSelector(ndx, value_type),
   };
   dc.renderAll();
@@ -68,7 +68,7 @@ function makeHourlyGraph(ndx) {
   var group = dim.group().reduceSum(dc.pluck('power'));
   var nonEmpty = remove_empty_bins(group);
   var chart = dc.lineChart("#g_hour")
-    .width(460)
+    .width(400)
     .height(400)
     .margins({ top: 10, right: 50, bottom: 30, left: 50 })
     .dimension(dim)
@@ -78,6 +78,7 @@ function makeHourlyGraph(ndx) {
     .elasticY(true)
     // .x(d3.scaleLinear())
     .x(d3.scaleTime())
+    .controlsUseVisibility(true)
     .xAxisLabel(function(d){
       console.log(d);
     })
@@ -96,7 +97,7 @@ function makeDailyGraph(ndx, value_type) {
   var group = dim.group().reduceSum(dc.pluck('energy'));
   var nonEmpty = remove_empty_bins(group);
   var chart = dc.barChart("#g_day")
-    .width(460)
+    .width(400)
     .height(400)
     .margins({ top: 10, right: 50, bottom: 30, left: 50 })
     .dimension(dim)
@@ -107,6 +108,7 @@ function makeDailyGraph(ndx, value_type) {
     .elasticX(true)
     .elasticY(true)
     .x(d3.scaleTime())
+    .controlsUseVisibility(true)
     .addFilterHandler(function(filters, filter) { return [filter]; });
   // .xAxisLabel(title)
   chart.xAxis().tickFormat(d3.timeFormat('%_d')); // https://github.com/d3/d3-time-format
@@ -120,7 +122,7 @@ function makeMonthyGraph(ndx, value_type) {
   var group = dim.group().reduceSum(dc.pluck(value_type));
   var nonEmpty = remove_empty_bins(group);
   var chart = dc.barChart("#g_month")
-    .width(460)
+    .width(400)
     .height(400)
     .margins({ top: 10, right: 50, bottom: 30, left: 50 })
     .dimension(dim)
@@ -136,7 +138,7 @@ function makeMonthyGraph(ndx, value_type) {
   // .xAxisLabel(title)
   chart.xAxis().tickFormat(d3.timeFormat('%b'));
   chart.filterPrinter(function(filters) {
-    return filters.map(function(f) { return d3.timeFormat('%b')(f) });
+    return filters.map(function(f) { return d3.timeFormat('%b')(f) }); //http://dc-js.github.io/dc.js/docs/html/dc.baseMixin.html#filterPrinter__anchor
   });
   return chart;
 }
@@ -147,8 +149,8 @@ function makeYearGraph(ndx, value_type) {
   var dim = ndx.dimension(dc.pluck('year'));
   var group = dim.group().reduceSum(dc.pluck(value_type));
   var nonEmpty = remove_empty_bins(group);
-  var chart = dc.barChart("#year-graph")
-    .width(460)
+  var chart = dc.barChart("#g_year")
+    .width(400)
     .height(400)
     .margins({ top: 10, right: 50, bottom: 30, left: 50 })
     .dimension(dim)
@@ -159,6 +161,7 @@ function makeYearGraph(ndx, value_type) {
     .elasticX(true)
     .elasticY(true)
     .x(d3.scaleTime())
+    .controlsUseVisibility(true)
     .addFilterHandler(function(filters, filter) { return [filter]; });
   // .xAxisLabel(title)
   chart.xAxis().tickFormat(d3.timeFormat('%Y'));
