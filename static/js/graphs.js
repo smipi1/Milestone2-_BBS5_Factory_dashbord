@@ -14,6 +14,7 @@ $(document).ready(function() {
 
 const sampleTime = 0.25;     // h
 const normalTarif = 0.05250; // EUR / kWh
+var graphs;
 
 function parseRow(csv_row) {
   var d = d3.timeParse("%Y-%m-%dT%H:%M:%S")(csv_row['timestamp']);
@@ -34,6 +35,7 @@ function makeGraphs(data) {
   var ndx = crossfilter(data);
   
   updateGraphs(ndx, "energy");
+  graphs.yearSelector.replaceFilter([["2019"]]).redrawGroup(); //  set as default when loading fist time
   
   $( "#value_type" ).change(function() {
     // User changed how to display values: kWh vs Euro
@@ -51,11 +53,13 @@ function makeGraphs(data) {
 
 function updateGraphs(ndx, value_type) {
   
-  makeHourlyGraph(ndx);
-  makeDailyGraph(ndx, value_type);
-  makeMonthyGraph(ndx, value_type)
-//  makeYearGraph(ndx);
-  makeYearSelector(ndx, value_type);
+  graphs = {
+    hourly: makeHourlyGraph(ndx),
+    daily: makeDailyGraph(ndx, value_type),
+    monthly: makeMonthyGraph(ndx, value_type),
+//  yearly: makeYearGraph(ndx),
+    yearSelector: makeYearSelector(ndx, value_type),
+  };
   dc.renderAll();
 }
 
@@ -82,6 +86,7 @@ function makeHourlyGraph(ndx) {
   // chart.yAxis().ticks(20);
   chart.xAxis().ticks(d3.timeHour.every(1));
   chart.xAxis().tickFormat(d3.timeFormat('%H'));
+  return chart;
 }
 
 function makeDailyGraph(ndx, value_type) {
@@ -105,6 +110,7 @@ function makeDailyGraph(ndx, value_type) {
     .addFilterHandler(function(filters, filter) { return [filter]; });
   // .xAxisLabel(title)
   chart.xAxis().tickFormat(d3.timeFormat('%_d')); // https://github.com/d3/d3-time-format
+  return chart;
 }
 
 function makeMonthyGraph(ndx, value_type) {
@@ -125,9 +131,14 @@ function makeMonthyGraph(ndx, value_type) {
     .elasticX(true)
     .elasticY(true)
     .x(d3.scaleTime())
+    .controlsUseVisibility(true)
     .addFilterHandler(function(filters, filter) { return [filter]; });
   // .xAxisLabel(title)
   chart.xAxis().tickFormat(d3.timeFormat('%b'));
+  chart.filterPrinter(function(filters) {
+    return filters.map(function(f) { return d3.timeFormat('%b')(f) });
+  });
+  return chart;
 }
 
 function makeYearGraph(ndx, value_type) {
@@ -151,6 +162,7 @@ function makeYearGraph(ndx, value_type) {
     .addFilterHandler(function(filters, filter) { return [filter]; });
   // .xAxisLabel(title)
   chart.xAxis().tickFormat(d3.timeFormat('%Y'));
+  return chart;
 }
 
 function makeYearSelector(ndx, value_type) {
@@ -163,7 +175,7 @@ function makeYearSelector(ndx, value_type) {
   select.title(function(d){
     return d.key;
   });
-  select.promptValue("2019");
+  return select;
 }
 
 function remove_empty_bins(source_group) {

@@ -45,7 +45,8 @@
     <!-- Main Content -->
     <main>
         <section class="container-fluid">
-            <div id="year-selector"></div>
+            <div id="year-selector">
+            </div>
             <form>
                 <!--<input class="target" type="text" value="Field 1">-->
                 <select id="value_type">
@@ -56,7 +57,8 @@
             <!--<div id="other">
                 Trigger the handler
             </div>-->
-            <div id="year-graph"></div>
+            <div id="year-graph">
+            </div>
             <div class="row">
                 <div id="g_hour" class='col-sm-4'>
                     <div class="form-group">
@@ -73,6 +75,9 @@
 
 
                 <div id="g_month" class='col-sm-4'>
+                    <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
+                      <a href="javascript:graphs.monthly.filterAll();dc.redrawAll();">reset</a>
+                    </div>
                     <div class="form-group">
 
                     </div>
