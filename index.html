@@ -27,52 +27,60 @@
 </head>
 
 <body>
- <!-- Header -->
-    <header>
-        <div>
-            
-        </div>
-    </header>
-<!-- Main Content -->
-    <section class="container-fluid main-content">
-        <div class="row">
-            <div id="g_hour" class='col-sm-4'>
-                <div class="form-group">
-                    <div class="input-group date" data-provide="datepicker">
-                        <input type="text" class="form-control">
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-th"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-     
-            
-            <div id="g_day" class='col-sm-4'>
-                <div class="form-group">
-                    <div class="input-group date" data-provide="datepicker">
-                        <input type="text" class="form-control">
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-th"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            
-            <div id="g_month" class='col-sm-4'>
-                <div class="form-group">
-                    <div class="input-group date" data-provide="datepicker">
-                        <input type="text" class="form-control">
-                        <div class="input-group-addon">
-                            <span class="glyphicon glyphicon-th"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Header -->
 
+    <head>
+
+        <nav class="navbar navbar-default">
+            
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Solar factory BBS5</a>
+                </div>
+            </div>
+        </nav>
+
+    </head>
+
+    <!-- Main Content -->
+    <main>
+        <section class="container-fluid">
+            <div id="year-selector"></div>
+            <form>
+                <!--<input class="target" type="text" value="Field 1">-->
+                <select id="value_type">
+                <option value="power" selected="selected">kWh</option>
+                <option value="tarif">Euro</option>
+              </select>
+            </form>
+            <!--<div id="other">
+                Trigger the handler
+            </div>-->
+            <div id="year-graph"></div>
+            <div class="row">
+                <div id="g_hour" class='col-sm-4'>
+                    <div class="form-group">
+
+                    </div>
+                </div>
+
+
+                <div id="g_day" class='col-sm-4'>
+                    <div class="form-group">
+
+                    </div>
+                </div>
+
+
+                <div id="g_month" class='col-sm-4'>
+                    <div class="form-group">
+
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </main>
 
 </body>
 

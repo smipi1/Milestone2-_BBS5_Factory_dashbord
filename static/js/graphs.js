@@ -1,118 +1,179 @@
 // A $( document ).ready() block.
 $(document).ready(function() {
-  var minDate = $('#datetimepicker2').datepicker('setDate',
-    d3.timeParse("%Y-%m-%dT%H:%M:%S")("2019-05-01T00:00:00")
-  )
 
   //Read the data
   d3.csv(
     "data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
     // When reading the csv, I must format variables:
-    formatVariables,
+    parseRow,
     // Now I can use this dataset:
     makeGraphs
   );
-  
-  $('.datepicker').datepicker();
+
 })
 
-function formatVariables(csv_row) {
+const sampleTime = 0.25;     // h
+const normalTarif = 0.05250; // EUR / kWh
+
+function parseRow(csv_row) {
   var d = d3.timeParse("%Y-%m-%dT%H:%M:%S")(csv_row['timestamp']);
   return {
     date: d,
     day: new Date(d.getFullYear(), d.getMonth(), d.getDate()),
     month: new Date(d.getFullYear(), d.getMonth(), 1),
     year: new Date(d.getFullYear(), 0, 1),
+    year_string: d3.timeFormat('%Y')(d), // Workaround for dc.selectMenu bug:
+                                         // See https://stackoverflow.com/questions/38591613/how-to-create-interaction-with-selectmenu-in-dc-js
     power: csv_row['power[kW]'],
-    energy: csv_row['power[kW]'] * 0.25,
+    energy: csv_row['power[kW]'] * sampleTime,
+    tarif: csv_row['power[kW]'] * sampleTime * normalTarif,
   }
-  
 }
-
-
 
 function makeGraphs(data) {
   var ndx = crossfilter(data);
   
+  updateGraphs(ndx, "energy");
+  
+  $( "#value_type" ).change(function() {
+    // User changed how to display values: kWh vs Euro
+    
+    updateGraphs(ndx, this.value);
+    if (this.value === "tarif" ) {
+      // Display graphs for tarif
+      $('#g_hour').hide();
+    } else {
+      // Display graphs for energy
+      $('#g_hour').show();
+    }
+  });
+}
+
+function updateGraphs(ndx, value_type) {
+  
   makeHourlyGraph(ndx);
-  makeDailyGraph(ndx);
-  makeMonthyGraph(ndx)
+  makeDailyGraph(ndx, value_type);
+  makeMonthyGraph(ndx, value_type)
+//  makeYearGraph(ndx);
+  makeYearSelector(ndx, value_type);
   dc.renderAll();
 }
+
 function makeHourlyGraph(ndx) {
-  var dim = ndx.dimension(function(d){return d.date});
+  var dim = ndx.dimension(function(d) { return d.date });
   var group = dim.group().reduceSum(dc.pluck('power'));
   var nonEmpty = remove_empty_bins(group);
   var chart = dc.lineChart("#g_hour")
-            .width(460)
-            .height(400)
-            .margins({ top: 10, right: 50, bottom: 30, left: 50 })
-            .dimension(dim)
-            .group(nonEmpty)
-            .transitionDuration(500)
-            .elasticX(true)
-            .elasticY(true)
-            // .x(d3.scaleLinear())
-            .x(d3.scaleTime())
-            // .xUnits(dc.units.ordinal);
-            // .xAxisLabel(day[0].date)
+    .width(460)
+    .height(400)
+    .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+    .dimension(dim)
+    .group(nonEmpty)
+    .transitionDuration(500)
+    .elasticX(true)
+    .elasticY(true)
+    // .x(d3.scaleLinear())
+    .x(d3.scaleTime())
+    .xAxisLabel(function(d){
+      console.log(d);
+    })
+  // .xUnits(dc.units.ordinal);
+  // .xAxisLabel(day[0].date)
   // chart.yAxis().ticks(20);
   chart.xAxis().ticks(d3.timeHour.every(1));
   chart.xAxis().tickFormat(d3.timeFormat('%H'));
 }
 
-function makeDailyGraph(ndx){
-  
-    // var title = d3.timeFormat('%B, %Y kWh produced')(data[0].date);
-    var dim = ndx.dimension(dc.pluck('day'));
-    var group = dim.group().reduceSum(dc.pluck('energy'));
-    var nonEmpty = remove_empty_bins(group);
-    var chart = dc.barChart("#g_day")
-                .width(460)
-                .height(400)
-                .margins({ top: 10, right: 50, bottom: 30, left: 50 })
-                .dimension(dim)
-                .group(nonEmpty)
-                .transitionDuration(500)
-                .x(d3.scaleBand())
-                .xUnits(dc.units.ordinal)
-                .elasticX(true)
-                .elasticY(true)
-                .x(d3.scaleTime())
-                .addFilterHandler(function(filters, filter) {return [filter];});
-                // .xAxisLabel(title)
-    chart.xAxis().tickFormat(d3.timeFormat('%d'));
+function makeDailyGraph(ndx, value_type) {
+
+  // var title = d3.timeFormat('%B, %Y kWh produced')(data[0].date);
+  var dim = ndx.dimension(dc.pluck('day'));
+  var group = dim.group().reduceSum(dc.pluck('energy'));
+  var nonEmpty = remove_empty_bins(group);
+  var chart = dc.barChart("#g_day")
+    .width(460)
+    .height(400)
+    .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+    .dimension(dim)
+    .group(nonEmpty)
+    .transitionDuration(500)
+    .x(d3.scaleBand())
+    .xUnits(dc.units.ordinal)
+    .elasticX(true)
+    .elasticY(true)
+    .x(d3.scaleTime())
+    .addFilterHandler(function(filters, filter) { return [filter]; });
+  // .xAxisLabel(title)
+  chart.xAxis().tickFormat(d3.timeFormat('%_d')); // https://github.com/d3/d3-time-format
 }
 
-function makeMonthyGraph(ndx){
-  
-    // var title = d3.timeFormat('%B, %Y kWh produced')(data[0].date);
-    var dim = ndx.dimension(dc.pluck('month'));
-    var group = dim.group().reduceSum(dc.pluck('energy'));
-    var nonEmpty = remove_empty_bins(group);
-    var chart = dc.barChart("#g_month")
-                .width(460)
-                .height(400)
-                .margins({ top: 10, right: 50, bottom: 30, left: 50 })
-                .dimension(dim)
-                .group(nonEmpty)
-                .transitionDuration(500)
-                .x(d3.scaleBand())
-                .xUnits(dc.units.ordinal)
-                .elasticX(true)
-                .elasticY(true)
-                .x(d3.scaleTime())
-                .addFilterHandler(function(filters, filter) {return [filter];});
-                // .xAxisLabel(title)
-    chart.xAxis().tickFormat(d3.timeFormat('%e'));
+function makeMonthyGraph(ndx, value_type) {
+
+  // var title = d3.timeFormat('%B, %Y kWh produced')(data[0].date);
+  var dim = ndx.dimension(dc.pluck('month'));
+  var group = dim.group().reduceSum(dc.pluck(value_type));
+  var nonEmpty = remove_empty_bins(group);
+  var chart = dc.barChart("#g_month")
+    .width(460)
+    .height(400)
+    .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+    .dimension(dim)
+    .group(nonEmpty)
+    .transitionDuration(500)
+    .x(d3.scaleBand())
+    .xUnits(dc.units.ordinal)
+    .elasticX(true)
+    .elasticY(true)
+    .x(d3.scaleTime())
+    .addFilterHandler(function(filters, filter) { return [filter]; });
+  // .xAxisLabel(title)
+  chart.xAxis().tickFormat(d3.timeFormat('%b'));
 }
 
-  function remove_empty_bins(source_group) {
-    return {
-        all:function () {
-            return source_group.all().filter(function(d) {
-                return Math.abs(d.value) > 0.0001;
-            });
-        }
-    };
+function makeYearGraph(ndx, value_type) {
+
+  // var title = d3.timeFormat('%B, %Y kWh produced')(data[0].date);
+  var dim = ndx.dimension(dc.pluck('year'));
+  var group = dim.group().reduceSum(dc.pluck(value_type));
+  var nonEmpty = remove_empty_bins(group);
+  var chart = dc.barChart("#year-graph")
+    .width(460)
+    .height(400)
+    .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+    .dimension(dim)
+    .group(nonEmpty)
+    .transitionDuration(500)
+    .x(d3.scaleBand())
+    .xUnits(dc.units.ordinal)
+    .elasticX(true)
+    .elasticY(true)
+    .x(d3.scaleTime())
+    .addFilterHandler(function(filters, filter) { return [filter]; });
+  // .xAxisLabel(title)
+  chart.xAxis().tickFormat(d3.timeFormat('%Y'));
+}
+
+function makeYearSelector(ndx, value_type) {
+  var dim = ndx.dimension(dc.pluck('year_string'));
+  var group = dim.group().reduceSum(dc.pluck(value_type));
+
+  var select = dc.selectMenu("#year-selector")
+    .dimension(dim)
+    .group(group);
+  select.title(function(d){
+    return d.key;
+  });
+  select.promptValue("2019");
+}
+
+function remove_empty_bins(source_group) {
+  return {
+    all: function() {
+      return source_group.all().filter(function(d) {
+        // Filter out zero values
+        // float is never exactly 0, so we filter out small values
+        return Math.abs(d.value) > 0.0001;
+      });
+    }
+  };
 }
