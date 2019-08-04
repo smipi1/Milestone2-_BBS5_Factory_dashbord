@@ -79,9 +79,10 @@ function makeHourlyGraph(ndx) {
     // .x(d3.scaleLinear())
     .x(d3.scaleTime())
     .controlsUseVisibility(true)
+    .colors(["orange"])
     .xAxisLabel(function(d){
       console.log(d);
-    })
+    });
   // .xUnits(dc.units.ordinal);
   // .xAxisLabel(day[0].date)
   // chart.yAxis().ticks(20);
@@ -107,6 +108,7 @@ function makeDailyGraph(ndx, value_type) {
     .xUnits(dc.units.ordinal)
     .elasticX(true)
     .elasticY(true)
+    .colors(["orange"])
     .x(d3.scaleTime())
     .controlsUseVisibility(true)
     .addFilterHandler(function(filters, filter) { return [filter]; });
@@ -132,6 +134,7 @@ function makeMonthyGraph(ndx, value_type) {
     .xUnits(dc.units.ordinal)
     .elasticX(true)
     .elasticY(true)
+    .colors(["orange"])
     .x(d3.scaleTime())
     .controlsUseVisibility(true)
     .addFilterHandler(function(filters, filter) { return [filter]; });
@@ -160,6 +163,7 @@ function makeYearGraph(ndx, value_type) {
     .xUnits(dc.units.ordinal)
     .elasticX(true)
     .elasticY(true)
+    .colors(["orange"])
     .x(d3.scaleTime())
     .controlsUseVisibility(true)
     .addFilterHandler(function(filters, filter) { return [filter]; });

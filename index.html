@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/3.1.0/dc.min.css" integrity="sha256-JxxmFZJjSBxxAjCludgb7ZMDLq9++jCr5pSVyoQLo2s=" crossorigin="anonymous" />
     <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="static/css/style.css" type="text/css" />
     <script src="https://d3js.org/d3.v4.js"></script>
     <!--<script type="text/javascript" src="static/js/d3-geo.min.js"></script>-->
     <script type="text/javascript" src="static/js/crossfilter.min.js"></script>
@@ -25,6 +26,7 @@
     <!--<script type="text/javascript" src="static/js/monthly_graph.js"></script>-->
    <!-- <script type="text/javascript" src="static/js/experiment.js"></script>-->
 
+
 </head>
 
 <body>
@@ -33,105 +35,103 @@
     <head>
 
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Solar Factroy BBS5</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          
-          </button>
-        
-            
+        <nav class="navbar navbar-expand-lg navbar-light bg-light logo-nav">
+                <h1 class="main_nav_header" >Solar Factory BBS5</h1>
+           
         </nav>
 
     </head>
 
-    <!-- Main Content -->
+<!-- Main Content -->
     <main>
-
-<section class="container-fluid">
-
-    <div class="row">
-        <div class="card text-white bg-success col-sm-6" style="max-width: 23rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Success card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    
+        <section class="allign_section">
+    
+            <div class="row">
+                <div class="card text-white bg-success col-sm-6" style="max-width: 23rem;">
+                    <div class="card-header">Header</div>
+                    <div class="card-body">
+                        <h4 class="card-title">Success card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card text-white bg-info col-sm-6" style="max-width: 23rem;">
+                    <div class="card-header">Header</div>
+                    <div class="card-body">
+                        <h4 class="card-title">Info card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card bg-light col-sm-6" style="max-width: 22rem;">
+                    <div class="card-header">Header</div>
+                    <div class="card-body">
+                        <h4 class="card-title">Light card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card text-white bg-dark col-sm-6" style="max-width: 22rem;">
+                    <div class="card-header">Header</div>
+                    <div class="card-body">
+                        <h4 class="card-title">Dark card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
             </div>
-        </div>    
-        <div class="card text-white bg-info col-sm-6" style="max-width: 23rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Info card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    
+            <div class="row monitor_graphs">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light col-xs-12 col-sm-12 ">
+                    <div class="col-sm-8">
+                        <p class="headings_graphs_sections ">
+                            <i class="fas fa-solar-panel fa-2x allign_icon_panel " aria-hidden="true "></i>
+                            <h2>Solar production history</h2>
+                        </p>
+                    </div>
+                    <div class="card text-white bg-secondary col-sm-2 " style="max-width: 20%; max-height:80px;">
+                        <div class="card-header">Choose Year</div>
+                        <div class="card-body cb_remove_padding">
+                            <div id="year-selector" class="col-sm-6"></div>
+                        </div>
+                    </div>
+    
+                    <div class="card text-white bg-primary col-sm-2" style="max-width: 20%; max-height:80px;">
+                        <div class="card-header ">kWh / Euro</div>
+                        <div class="card-body cb_remove_padding ">
+                            <select id="value_type " class="col-sm-6 ">
+                                <option value="power " selected="selected ">kWh</option>
+                                <option value="tarif ">Euro</option>
+                            </select>
+                        </div>
+                    </div>
+    
+                </nav>
+                
+                <div id="g_year" class="col-xs-12 col-sm-3 col-lg-3 ">
+                    <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                        <a href="javascript:graphs.yearly.filterAll();dc.redrawAll(); ">reset</a>
+                    </div>
+                </div>
+                <div id="g_month" class="col-xs-12 col-sm-3 col-lg-3">
+                    <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                        <a href="javascript:graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
+                    </div>
+    
+                </div>
+    
+                <div id="g_day" class="col-xs-12 col-sm-3 col-lg-3 ">
+                    <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                        <a href="javascript:graphs.daily.filterAll();dc.redrawAll(); ">reset</a>
+                    </div>
+                </div>
+    
+                <div id="g_hour" class="col-xs-12 col-sm-3 col-lg-3 text-center  ">
+                    <div>
+                        <h4> Hourly power output</h4>
+                    </div>
+                </div>
+    
             </div>
-        </div>
-        <div class="card bg-light col-sm-6" style="max-width: 22rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Light card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
-        <div class="card text-white bg-dark col-sm-6" style="max-width: 22rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Dark card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
-        <div class="card text-white col-sm-6 bg-secondary " style="max-width: 19rem;">
-            <div class="card-header">Choose Year</div>
-            <div class="card-body">
-                <div id="year-selector" class="col-sm-6"></div>
-            </div>
-        </div>
-        
-        <div class="card text-white bg-primary col-sm-6" style="max-width: 19rem;">
-            <div class="card-header">kWh / Euro</div>
-            <div class="card-body">
-                <select id="value_type" class="col-sm-6">
-                    <option value="power" selected="selected">kWh</option>
-                    <option value="tarif">Euro</option>
-                </select>
-            </div>
-        </div>
-
-        <!--<div id="year-selector" class="col-sm-6"></div>-->
-
-      <!-- <select id="value_type" class="col-sm-6">
-            <option value="power" selected="selected">kWh</option>
-            <option value="tarif">Euro</option>
-        </select>-->
-    </div>
-
-    <div class="row">   
-        <div id="g_year" class="col-sm-3 container-fluid">
-            <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
-                <a href="javascript:graphs.yearly.filterAll();dc.redrawAll();">reset</a>
-            </div>
-        </div>
-        <div id="g_month" class="col-sm-3 container-fluid">
-            <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
-                <a href="javascript:graphs.monthly.filterAll();dc.redrawAll();">reset</a>
-            </div>
-           
-        </div>
-
-        <div id="g_day" class="col-sm-3 container-fluid">
-            <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
-                <a href="javascript:graphs.daily.filterAll();dc.redrawAll();">reset</a>
-            </div>
-        </div>
-
-        <div id="g_hour" class="col-sm-3 container-fluid">
-            <div>
-                <h3> Daily production</h3>
-            </div>
-        </div>
-        
-</div>
-
-</section>
+    
+        </section>
     </main>
 
 </body>

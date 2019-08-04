@@ -1,0 +1,48 @@
+.logo-nav {
+    background: url("../../assets/sunny.jpg");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size:contain;
+    display: block;
+    padding:0px;
+    min-height: 95px;
+    transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+}
+.main_nav_header{
+    text-align: center;
+    padding-top: 30px;
+}
+
+
+.monitor_graphs{
+    background-color: #00ccff;
+    margin: 0px;
+
+    
+}
+
+.cb_remove_padding{
+    padding: 0px;
+}
+.headings_graphs_sections{
+    margin:0px;
+    padding:0px;
+    /*width: 100%;*/
+   
+
+}
+.allign_icon_panel{
+    padding-top: 3px;
+    background-color: #e6e600;
+    border-radius: 30px;
+    float: left;
+    
+   
+}
+.allign_section{
+    display: inline;
+    padding:0px;
+}
