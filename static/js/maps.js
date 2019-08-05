@@ -5,7 +5,7 @@
         });
 
         var image = {
-          url: "assets/panelicon.JPG",
+          url: "assets/solar-panels.png",
           scaledSize: new google.maps.Size(40, 40),
 
         };
@@ -15,5 +15,4 @@
           icon: image
         });
       }
-      
       
