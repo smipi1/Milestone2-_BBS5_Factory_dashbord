@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/3.1.0/dc.min.css" integrity="sha256-JxxmFZJjSBxxAjCludgb7ZMDLq9++jCr5pSVyoQLo2s=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="static/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dc/3.1.0/dc.min.css" integrity="sha256-JxxmFZJjSBxxAjCludgb7ZMDLq9++jCr5pSVyoQLo2s=" crossorigin="anonymous" >
+    <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" >
+    <link rel="stylesheet" href="static/css/style.css" type="text/css">
     <script src="https://d3js.org/d3.v4.js"></script>
     <!--<script type="text/javascript" src="static/js/d3-geo.min.js"></script>-->
     <script type="text/javascript" src="static/js/crossfilter.min.js"></script>
@@ -22,23 +22,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv6tg9QP0ziuPw8PSNEw2-6v0enrg1nlI&callback=initMap"></script>
     <script type="text/javascript" src="static/js/graphs.js"></script>
-    <!--<script type="text/javascript" src="static/js/monthly_graph.js"></script>-->
+    <script type="text/javascript" src="static/js/maps.js"></script>
    <!-- <script type="text/javascript" src="static/js/experiment.js"></script>-->
 
 
 </head>
 
 <body>
-    <!-- Header -->
-
     <head>
-
-
         <nav class="navbar navbar-expand-lg navbar-light bg-light logo-nav">
-                <h1 class="main_nav_header" >Solar Factory BBS5</h1>
-           
-        </nav>
+                <h1 class="main_nav_header">Solar Factory BBS5</h1>
+         </nav>
 
     </head>
 
@@ -48,28 +45,29 @@
         <section class="allign_section">
     
             <div class="row">
-                <div class="card text-white bg-success col-sm-6" style="max-width: 23rem;">
+                <div class="card text-white bg-success col-sm-3" style="max-width: 23rem;">
                     <div class="card-header">Header</div>
                     <div class="card-body">
                         <h4 class="card-title">Success card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div id="map"></div>
                     </div>
                 </div>
-                <div class="card text-white bg-info col-sm-6" style="max-width: 23rem;">
+                <div class="card text-white bg-info col-sm-3" style="max-width: 23rem;">
                     <div class="card-header">Header</div>
                     <div class="card-body">
                         <h4 class="card-title">Info card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card bg-light col-sm-6" style="max-width: 22rem;">
+                <div class="card bg-light col-sm-3" style="max-width: 22rem;">
                     <div class="card-header">Header</div>
                     <div class="card-body">
                         <h4 class="card-title">Light card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                     </div>
                 </div>
-                <div class="card text-white bg-dark col-sm-6" style="max-width: 22rem;">
+                <div class="card text-white bg-dark col-sm-3" style="max-width: 22rem;">
                     <div class="card-header">Header</div>
                     <div class="card-body">
                         <h4 class="card-title">Dark card title</h4>
