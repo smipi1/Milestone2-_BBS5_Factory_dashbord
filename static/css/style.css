@@ -121,3 +121,33 @@ main{
         height: 74px;
         line-height: normal;
       }
+     
+#euro {
+    background: url("../../assets/money-icon-transparent-background-15.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding:0px;
+    min-height:80px;
+    min-width:80px;
+    transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
