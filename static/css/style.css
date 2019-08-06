@@ -99,3 +99,25 @@ main{
     -o-transition: all 1s ease-in-out;
     -webkit-transition: all 1s ease-in-out;
 }
+#leaf {
+    background: url("../../assets/icons-green-leaf-clip-art-green-leaf-icon-5aae057630e799.0918947015213541022003 (1).png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding:0px;
+    min-height:80px;
+    min-width:80px;
+    transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+}
+ .number-box {
+        width: 200px;
+        font-size: 40px;
+        text-align: center;
+        padding-top: 63px;
+        padding-bottom: 63px;
+        height: 74px;
+        line-height: normal;
+      }

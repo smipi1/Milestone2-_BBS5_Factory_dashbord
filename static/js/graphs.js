@@ -14,6 +14,7 @@ $(document).ready(function() {
 
 const sampleTime = 0.25;     // h
 const normalTarif = 0.05250; // EUR / kWh
+const co2_per_kWh = 0.7;
 var graphs;
 
 function parseRow(csv_row) {
@@ -28,6 +29,7 @@ function parseRow(csv_row) {
     power: csv_row['power[kW]'],
     energy: csv_row['power[kW]'] * sampleTime,
     tarif: csv_row['power[kW]'] * sampleTime * normalTarif,
+    co2: csv_row['power[kW]'] * sampleTime * co2_per_kWh,
   }
 }
 
@@ -51,6 +53,7 @@ function makeGraphs(data) {
   });
 }
 
+
 function updateGraphs(ndx, value_type) {
   
   graphs = {
@@ -59,9 +62,21 @@ function updateGraphs(ndx, value_type) {
     monthly: makeMonthyGraph(ndx, value_type),
     yearly: makeYearGraph(ndx, value_type),
     yearSelector: makeYearSelector(ndx, value_type),
+    co2display: makeCo2Total(ndx),
   };
   dc.renderAll();
 }
+function makeCo2Total(ndx) {
+  var dim = ndx.dimension(dc.pluck('day'));
+  var sumAll = dim.groupAll().reduceSum(dc.pluck('co2'));
+  var number = dc.numberDisplay("#co2Avoided")
+    .group(sumAll)
+    .valueAccessor(function(d){ return d; })
+    .formatNumber(function(n) { return d3.format("d")(n) + " kg"});
+  return number;
+}
+
+
 
 function makeHourlyGraph(ndx) {
   var dim = ndx.dimension(function(d) { return d.date });
