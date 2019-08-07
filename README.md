@@ -7,160 +7,95 @@ This Dashboard will be used mainly by a owner of solar pannels. To have an overw
 The user will also be able to do inspection on usaged and production also will have and idea what is the impact of the sunpower forcast on the production.
 
 
-Click [here](https://) to see the website.
+Click [here](https://lemoenskil.github.io/Milestone2-_BBS5_Factory_dashbord/) to see the website.
 
 ## UX
-This website if for a potential and current customer of bSentient.  The company wants to market their capability example Services and Products via this page.   
-They would also use this site as communication for interested Customers.   And in the event that a customer is interested in training they want to make sure that the customer can contact the company. 
-The customer wants to use this website to gain information on bSentient and to enquire about their services and products.  They want to use this website to introduce themselves and their capabilities to guide the user to their linked profile if they have one or busy setting up one.
+This Dashboard if for a home solar panel owner.  The owner will use this dashbord to get an overview of the production on the historical data   
+
 
 
 ### Strategy plane
-see link to document
-[the assignment](./user-design-experience/Strategy_Plane/Create_a_website_for_a_company_bSentient.pdf)
 
 #### Create a website for a Engineering Consulting Company bSentient
     
-    Build a static (front-end only) website for Engineering Consulting Company bSentient. As a starting
-    point, you may want to use wireframes, as we did in the UX lesson (you can use Balsamiq or any other
-    tool, including just pen and paper). You can use either your assets or the assets provided by bSentient.
-The Company is a start-up that has just launch one in-house product and they are looking to get more exposure on their expertise and services that they have to offer.
-    You have been given the following requirements after interviews with the client’s representatives:
-    • Their primary target audiences are their customers and potential customer who wish to use the
-    site to see what they have to offer in their field of expertise.
-    • target customer by dummy newsletter/contact form
-    -Also, the company would like to use the site to showcase their fields of expertise
-    • a link to their current product web shop / video page
-    • a page to show case training and where the customer can download some training material
-    • Contact us page with contact form name/email/different topic enquiries
-    The band has provided you, the developer, with the following assets that they would like to show case on
-    their website:
-    • Photos of the consultant
-    • A video clip
-    • Content:
-    -about the
-    -Information on their development services
-    -information on their consulting services
-    -information on their training
-    • Power point presentation on training that can be downloaded for free
-    • Also, they are in the process of creating a social media presence and would like to add links to
-    their Facebook, Twitter pages.
-    They also want you to add the personal linked link to the consultant LinkedIn profiles
-    
+Build  Interactive Dashboard for a Home solar panel installation. 
+
+The Dashboard has the following requirements:
+    • Their primary target audiences are owners or prospective owners of Solar Home Installation
+    • The Dashboard need to include the following 
+	-installation address and location.
+	-installation summery
+	-Totals for carbon avoided and Euro earned
+	-Graphs that show the daily and monthly and yearly production in kWh.
+	-Graph that show the monthly usage compare to production
+	-Heat map showing sun power weather data for on the Netherlands
+	-Line Graph showing the sun power over the location of the solar installation.
+	-Scatterplot showing the correlation between sun energy and power production
+	
+    • I need the following for the dashboard
+	-photo of the installation
+	-Summery of the installation
+	-data file of kWh produced
+	-Data of consumed energy
+	-information on tariff and carbon avoided
+	-Weather data (knmi)
+    • Need a selector to choose the year and one to choose between euro and kWh
+    • A map is also need to show the installation location
+
 #### User stories:
 Stories:
-- As a customer, I want to know more about bSentient, its owners and capabilities (eexample project work on and skills), because I need to decide if they can help me solve my problem or staff my project.
-- As a trainee or training manager, I want to know more about the trainings offered and the presentation medium (e.g. online or in classes), because I want to determine if any of the courses suit my needs and preferences.
-- As a trainee or training manager, I want to know how the course or material is structured, because I want to determine if any of the courses suit my needs and preferences.
-- As a recruiter, I want to know more about the background of each professional, because I need to determine if the contractor is a good fit for my contracting needs.
-- As a project manager, I want to know more about the fields that bSentient Specialize in, because I need to determine whether bSentient is a suitable partner for my development outsourcing needs.
-- As a customer, I want to read some bSentient success stories, because it gives me confidence that I have a reliable partner.
-- As a customer, I want a example of customers bSentient already helped, because it gives me confidence that I have a reliable partner.
-- As a customer, I want to link up with the owners and contractors via social media for the future, because I need as much information as possible to determine if they are the right partners for me.
-- As a customer, I want to subscribe to the bSentient news feed, because I want to remain aware of new and updated products and trainings.
+•	As a user, I'd like to see clean, well presented data in easy to understand/read format (graphs, charts, etc…)
+•	As a user, I'd like to see a variety of charts/graphs to show different data in the dataset
+•	As a user, I’d like for the dashboard to be made so that it will work and adapt to all manner of devices (responsive design)
+•	As a user, I'd like to see some text to explain the data/statistics being seen on screen, giving further knowledge/context to the data being displayed
+•	As a user, I'd like to see engaging use of colour making the dashboard pleasant to look at and keeping the user interested
+•	As a user, I'd like to see easy to read font format for both the title/heading and all other writing on the dashboard
+•	As a user, I'd like to be able to see the difference between kWh, Euro’s
+•	As a user, I’d like to be able to have an overview of day, month and year data
+•	As a user I’d like to be to compare data from the weather with my solor production
+•	As a user, I'd like to be able to reset all the filters placed through clicks on the graphs with a simple button (therefore reverting the data shown on the graphs back to the default data)
 
 #### Putting it all in the strategy plane
-see link to document
-[Strategy plane](./user-design-experience/Strategy_Plane/Strategy_Plane.pdf)
 
-Strategy Plane
-What's the target market/culture?
-User are usually going to be from B2B, project managers, entrepreneurs looking for technology solutions. They will be in the front end of embedded, IOT and open source or they want a product that will be high-tech. The demography can be men and woman from all ages they are interested or working in the high-tech industry or are
-interested to create a IOT, embedded product or want to hire in consultant to create a product.
+Project Purpose
+I am creating a Data dashboard aimed towards helping current and prospective home solar panel installation owner getting an overview of their production, yield, carbon avoided  and cost.
+The data dashboard will use both D3 and DC to plot multiple charts that will focus on different aspects of the dataset that I am using. The information I will mainly focus on is the energy/power production per day month and year.  I will only include the data from the date of installation from 19 September.   The usage date will be from Jan 2019.   
+The dashboard will also include google map api, and a weather api  the get the data of the correlation map between the energy and sun power.
+Why would a user want this?
+In the current state of global warming solar power is a hot topic.  The user will not only want to save the planet but also want to see what is in it for him, and that will be financially.   Also as a user is would be nice to have a look as historical weather data do see what the correlation is between the weather and the production will be.
+The user will also want it to get a one page overview in of his current production vs usage this can help in decisions for example extending the capacity of using the current capacity better.  (example if you want to move from the gas supply to only electrical)
 Why is this so special?
-That customer/ potential customers be able to make enquiry about the company when they have a product that need to be developed. That customer/ potential customers be able to take up contact with
-    the company about the training and that they can download free training material.
- Why would a user want this?
- IOT is a hot topic and there is a huge demand for the know how, in either product development,
- training or consulting. The user will want to have a clear picture on what they offer as solution. This
- site will be the gateway to access information on the company and the consultant’s capabilities. Also link the customer to a in house product that they have developed. Linked them to the linked in profile of the consultant.
-    What makes a good bSentient experience?
-    • Reading about their services on offer.
-    • Watching their videos of their product.
-    • Seeing free training material.
-    • Connecting with the consultant.
-    o Connect on linked, Facebook
-    What does the user expect?
-    • What is this?
-    o the expertise needs to be prominent. Example Embedded, IOT and Open Source…..
-    • Is this what I expected to see?
-    o Logo, high-tech feel and look with futuristic fond for heading and networks pictures
-    showing connectivity. Also, space/ stars to be used for the one product that they have
-    developed
-    • Does it offer what I want?
-    o Videos, downloads, testimonials, blogs contact form and special offers.
-    • Does it valuable enough to stay?
-    o Content (free downloads and the special offer requests) will compel them to stay.
-    • What actions can I take now?
-    o Free assessment (can be achieved with pop-up form).
-    o Contact us. (on a Contact us page).
-    o Connect with them on social media (NB Ought to be in a new _blank window).
-    • How do I contact someone
-    o Asking for an assessment of enquiry or/and connecting on social media.
-    
-    **to see feasibility matrix, go to*
-    [Strategy plane] (./user-design-experience/Strategy_Plane/Strategy_Plane.pdf)
+The Data dashboard will stand out as it will have graphs that are easy to read and comprehend, and these will present the dataset in a way that provides the user with all of the required information,.
+User Experience
+There will be clean, well presented data in easy to understand/read format (graphs, charts, etc…), this will be the main draw to the dashboard.
+The dashboard will also have responsive design, so it can display correctly on mobile devices, right through to large desktops, therefore allowing the information to be accessed and viewed properly no matter where you are or what device you are using.
+There will also be summaries with some text included on the page to explain the data/statistics being seen on screen, giving further knowledge/context to the data being displayed.
+
     
 ### Scope Plane
-see link to document
-[Scope Plane] (./user-design-experience/Scope_Plane/Scope_Plane.pdf)
-    
     What they say they need
-    • A Website.
-    • Customers and potential customer can read about the company and see what they can do and
-    what they have done
-    • The company needs a medium in which the they can be contacted with potential leads.
-    • To showcase on their new product, a video clip and a way to link the customer to the webstore.
-    • To showcase the training that they can give and a link to some material downloads
-    • To add links to their Linked, Facebook and pages which are currently being created.
+    • A Dashboard.
+    • View their historical data
+    • See profit made
+    • Show that they are contrubuting to geener future
+
     What they actually need
-    • A mobile-first responsive website.
-    • A contact page.
-    • A page to showcase their professional services to the customer/ potential customer.
-    • Links to their social media platforms and web shop.
-    What they don’t know they need
-    • A ‘sign up for the newsletter" pop up to get the latest product development and training news.
-    • At a later time possibly a online booking agenda for the training.
-    • A marketing slogan where there is a special on training eg if you book now or a free quote for a
-    Product development project
+    • Response Dashboard.
+    • That can be viewed on a mobile.
+    • Gives totals on montly, yearly and daily 
     
-    **See scenario and requirements match in document see link*
-[Scope Plane](./user-design-experience/Scope_Plane/Scope_Plane.pdf)
 
 ### Structure Plane
-see link to document
-[Structure Plane](./user-design-experience/Structure_Plane/Structure_Plane.pdf)
+
 
 Information Architecture
 Will be a simple tree structure using a horizontal bar near the top of the page taking up the right        two thirds of the page.
 Interaction Design (IXD)
-    • Site Logo will bring user back to home as well as having ‘Home’ on the navigation bar in case
-    some un-tech savvy users don’t know this convention.
-    • Each Menu heading will have some sort of roll over to confirm that clicking that area has an
-    action.
-    • Each navigation button will have a particular colour, which will be used on its corresponding page
-    to visually confirm what page they are on.
-    o On mobile device the hamburger icon will be used.
-    • The ‘Special offer for training and free first assessment’ information will be at the top of each
-    page.
-    o It will bring up a pop-up with a simple form that asks for their first name and last name
-    and email address.
-    o A radio button to choose what it will be e.g. training, development , consulting.
-    o We will include that their email won’t be passed on to anyone else.
-    o We will provide a message once they have successfully completed the form and hit the
-    submit button.
-    • The social links to Facebook, LinkedIn will have roll-over effects and open in a blank window.
-    • On the landing page section there will be 5 blocks with a short description and if you click on it
-    will take you to either to the product, service or training page
-    • In the footer there will be links to about and Contact and Privacy statement, this will be on all
-    the pages
+    • The Navbar will have the name of the istalation and a logo
+    • For the color schem a bootwatch slate will be used.
+    • One page sectins  will be used with a grid to it.
+    • There will be a footer at the end that redirect you back to the top
     
-    **see document for diagram: *
-[Structure Plane](./user-design-experience/Structure_Plane/Structure_Plane.pdf)
-    
-**Note that on the final product there was some changes as the customer was not focused on the privacy statement as it s still working on that.  Also they did not need to see the pop up on each page.  Also they did not want different colour per page as it is not seemed fit for a professional company (and was looking more for background pictures to fit IOT and AI (artificial networks).They also wanted an criteria selection on the form as they need to know which field of technology the customer was interested in.   They wanted the social media logo as they are going to us it in the future*
-
-
 ### Skeleton Plane
 
 #### mock-ups:
