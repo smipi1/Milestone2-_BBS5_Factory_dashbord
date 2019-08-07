@@ -63,6 +63,7 @@ function updateGraphs(ndx, value_type) {
     yearly: makeYearGraph(ndx, value_type),
     yearSelector: makeYearSelector(ndx, value_type),
     co2display: makeCo2Total(ndx),
+    eurodisplay:makeEuro2Total(ndx),
   };
   dc.renderAll();
 }
@@ -73,6 +74,16 @@ function makeCo2Total(ndx) {
     .group(sumAll)
     .valueAccessor(function(d){ return d; })
     .formatNumber(function(n) { return d3.format("d")(n) + " kg"});
+  return number;
+}
+
+function makeEuro2Total(ndx) {
+  var dim = ndx.dimension(dc.pluck('day'));
+  var sumAll = dim.groupAll().reduceSum(dc.pluck('tarif'));
+  var number = dc.numberDisplay("#euroearned")
+    .group(sumAll)
+    .valueAccessor(function(d){ return d; })
+    .formatNumber(function(n) { return d3.format("d")(n) + " Euro"});
   return number;
 }
 
