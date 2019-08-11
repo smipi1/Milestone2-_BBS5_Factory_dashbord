@@ -136,7 +136,16 @@ main{
     -webkit-transition: all 1s ease-in-out;
 }
 
+.card_select{
+    padding: 0px;
+}
 
+.graph_cal{
+    width: 100%;
+}
+.calender_g{
+    overflow: scroll;
+}
 
 
 

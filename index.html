@@ -78,21 +78,21 @@
     
             <div class="row monitor_graphs">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light col-xs-12 col-sm-12 ">
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 col-lg-6">
                         <p class="headings_graphs_sections ">
                             <i class="fas fa-solar-panel fa-2x allign_icon_panel " aria-hidden="true "></i>
                             <h2>Solar production history</h2>
                         </p>
                     </div>
-                    <div class="card text-white bg-secondary col-sm-2 " style="max-width: 20%; max-height:80px;">
-                        <div class="card-header">Choose Year</div>
+                    <div class="card text-white bg-secondary col-sm-6 col-lg-3 " style="max-width: 40%; max-height:80px;">
+                        <div class="card-header card_select">Choose Year</div>
                         <div class="card-body cb_remove_padding">
                             <div id="year-selector" class="col-sm-6"></div>
                         </div>
                     </div>
     
-                    <div class="card text-white bg-primary col-sm-2" style="max-width: 20%; max-height:80px;">
-                        <div class="card-header ">kWh / Euro</div>
+                    <div class="card text-white bg-primary col-sm-6 col-lg-3" style="max-width: 40%; max-height:80px;">
+                        <div class="card-header card_select">kWh / Euro</div>
                         <div class="card-body cb_remove_padding ">
                             <select id="value_type " class="col-sm-6 ">
                                 <option value="power " selected="selected ">kWh</option>
@@ -102,31 +102,31 @@
                     </div>
     
                 </nav>
+                <div class="row graph_cal">
+                    <div id="g_year" class="col-xs-12 col-sm-6 col-lg-3 calender_g ">
+                        <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                            <a href="javascript:graphs.yearly.filterAll();dc.redrawAll(); ">reset</a>
+                        </div>
+                    </div>
+                    <div id="g_month" class="col-xs-12 col-sm-6 col-lg-3 calender_g">
+                        <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                            <a href="javascript:graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
+                        </div>
                 
-                <div id="g_year" class="col-xs-12 col-sm-3 col-lg-3 ">
-                    <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                        <a href="javascript:graphs.yearly.filterAll();dc.redrawAll(); ">reset</a>
+                    </div>
+                
+                    <div id="g_day" class="col-xs-12 col-sm-6 col-lg-3 calender_g">
+                        <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                            <a href="javascript:graphs.daily.filterAll();dc.redrawAll(); ">reset</a>
+                        </div>
+                    </div>
+                
+                    <div id="g_hour" class="col-xs-12 col-sm-6 col-lg-3 text-center  ">
+                        <div>
+                            <h4> Hourly power output</h4>
+                        </div>
                     </div>
                 </div>
-                <div id="g_month" class="col-xs-12 col-sm-3 col-lg-3">
-                    <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                        <a href="javascript:graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
-                    </div>
-    
-                </div>
-    
-                <div id="g_day" class="col-xs-12 col-sm-3 col-lg-3 ">
-                    <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                        <a href="javascript:graphs.daily.filterAll();dc.redrawAll(); ">reset</a>
-                    </div>
-                </div>
-    
-                <div id="g_hour" class="col-xs-12 col-sm-3 col-lg-3 text-center  ">
-                    <div>
-                        <h4> Hourly power output</h4>
-                    </div>
-                </div>
-    
             </div>
     
         </section>
