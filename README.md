@@ -101,8 +101,8 @@ Interaction Design (IXD)
 #### mock-ups:
 
 In the links below you can see the mock-up’s that I drew using the mock-up tool “Balsamiq”:
-![Desk top mockup](./assets/new_project.jpg)
-![Mobile mockup](./user-design-experience/Skeleton_Plane/Mobile_mockup.jpg)
+![Desk top mockup](/assets/mobile_wireframe.JPG)
+![Mobile mockup](./assets/mobile_wireframe.JPG)
 - 
 **Note that the final design has changed from the original design in the mock-ups. The reason why it has changed.  I was trying different layouts while I was experimenting and learning the code and sometimes the new designs looked better than the original ones, or was just more responsive. In the desktop design the block with information was not that dominant which I have changed.   Made it bigger and put is on the background picture with a carousel.   Also have I cantered the Main information block and added a modal with a button.  On the mobile design I have added no picture and have just made use of the info block and made sure the button was visible for the user.  I have also replaced the logo at the footer and put the links for contact and social media*
 
