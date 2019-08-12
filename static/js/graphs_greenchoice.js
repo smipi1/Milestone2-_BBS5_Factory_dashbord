@@ -1,34 +1,36 @@
 $(document).ready(function() {
 queue()
-    .defer(d3.csv, "data/greenchoice/greenchoice_energy_usage.csv", parseRow)
-    .await(makeGraphs);
+    .defer(d3.csv, "data/greenchoice/greenchoice_energy_usage.csv", parseGrRow)
+    .await(makeGrGraphs);
     
-function makeGraphs(error, greenchoiceData) {
+function makeGrGraphs(error, greenchoiceData) {
     var ndx = crossfilter(greenchoiceData);
-    console.log (greenchoiceData);
-    
-    show_montly_enery_consumption(ndx)
-
+    show_comparison_prdvscons(ndx);
+    show_montly_enery_consumption(ndx);
+    makeYearSelector(ndx);
     dc.renderAll();
 }
-function parseRow(csv_row) {
+function parseGrRow(csv_row) {
   var d = d3.timeParse("%Y %b")(csv_row['year']+' '+ csv_row['month']);
   return {
     date: d,
+    year_string: d3.timeFormat('%Y')(d),
     energy: parseFloat(csv_row['Total used']),
+    produced: parseFloat(csv_row['sunny_produced']),
     tarif: parseFloat(csv_row['consumed Euro incl vat']),
-  }
+  };
 }
 function show_montly_enery_consumption (ndx){
     var dim = ndx.dimension(function(d) { return d.date });
+
     var group = dim.group().reduceSum(dc.pluck('energy'));
-    
+     var nonEmpty = remove_empty_bins(group);
     var chart = dc.barChart("#g_e_usaged")
         .width(400)
         .height(400)
         .margins({ top: 10, right: 50, bottom: 30, left: 50 })
         .dimension(dim)
-        .group(group)
+        .group(nonEmpty)
         .transitionDuration(500)
         .xUnits(dc.units.ordinal)
         .elasticX(true)
@@ -36,7 +38,90 @@ function show_montly_enery_consumption (ndx){
         .colors(["orange"])
         .x(d3.scaleTime())
         .controlsUseVisibility(true)
-        .xAxisLabel("Energy usaged")
-    // chart.xAxis().tickFormat(d3.timeFormat('%_B'));
+        .addFilterHandler(function(filters, filter) { return [filter]; })
+        .xAxisLabel("Energy used")
+    chart.xAxis().tickFormat(d3.timeFormat('%_b'));
+    return chart
+}
+
+function show_comparison_prdvscons (ndx){
+  var dim = ndx.dimension(function(d) { return d.date });
+  var energy = dim.group().reduceSum(dc.pluck('energy'));
+  var produced = dim.group().reduceSum(dc.pluck('produced'));
+
+  var xScale = d3.scaleTime().domain([
+    dim.bottom(1)[0].date,
+    dim.top(1)[0].date
+  ]);
+
+  var composite = dc.compositeChart("#g_usagevproduction")
+    .width(400)
+    .height(400)
+    .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+    .transitionDuration(500)
+    .xUnits(dc.units.ordinal)
+    .x(xScale)
+    .controlsUseVisibility(true)
+    // .addFilterHandler(function(filters, filter) { return [filter]; })
+    .xAxisLabel("Energy produced")
+    .xUnits(d3.timeMonths);
+  composite.xAxis().tickFormat(d3.timeFormat('%_b'));
+      
+  var producedChart = dc.barChart(composite)
+    .dimension(dim)
+    .group(produced)
+    .colors(["orange"])
+
+  var energyChart = dc.lineChart(composite)
+    .dimension(dim)
+    .group(energy)
+    .colors(["blue"])
+
+  composite.compose([
+    producedChart,
+    energyChart,
+  ]);
+  return composite;
+  
+        
+    
+  // var composite = dc.compositeChart("#g_usagevproduction");
+  // composite
+  //       .width(400)
+  //       .height(400)
+  //       .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+  //       .yAxisLabel("The Y Axis")
+  //       .x(d3.scaleTime())
+  //       .xUnits(dc.units.ordinal)
+  //       .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
+  //       .renderHorizontalGridLines(true)
+  //       .compose([
+  //               // dc.barChart(composite)
+  //               // .dimension(dim)
+  //               // .colors('blue')
+  //               // .group(grp2, "Bars")
+  //               // .centerBar(true),
+  //           dc.lineChart(composite)
+  //               .dimension(dim)
+  //               .colors('red')
+  //               .group(grp1, "Dots")
+  //               .dashStyle([2,2])
+  //           ])
+  //       .brushOn(false);
+
+}
+
+
+function makeYearSelector(ndx) {
+  var dim = ndx.dimension(dc.pluck('year_string'));
+  var group = dim.group().reduceSum(dc.pluck('date'));
+
+  var select = dc.selectMenu("#year-selector_usage")
+    .dimension(dim)
+    .group(group);
+  select.title(function(d){
+    return d.key;
+  });
+  return select;
 }
 })
