@@ -1,43 +1,16 @@
 // A $( document ).ready() block.
 $(document).ready(function() {
 
-  var sunnyPromise = new Promise(function (resolve, reject) {
-    d3.csv("data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
-      // When reading the csv, I must format variables:
-      parseRow,
-      // Now I can use this dataset:
-      resolve
-    )
-  });
+//Read the data
+d3.csv(
+ "data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
+ // When reading the csv, I must format variables:
+parseRow,
+// Now I can use this dataset:
+makeGraphs
+);
 
-  var greenChoicePromise = new Promise(function (resolve, reject) {
-    d3.csv("data/greenchoice/greenchoice_energy_usage.csv",
-      // When reading the csv, I must format variables:
-      parseGreenChoiceRow,
-      // Now I can use this dataset:
-      resolve
-    )
-  });
-
-  Promise.all([
-    sunnyPromise,
-    greenChoicePromise,
-  ]).then(function(data) {
-    console.log(data[1]);
-    makeGraphs(data[0]);
-  })
-});
-
-  //Read the data
-//   d3.csv(
-//     "data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
-//     // When reading the csv, I must format variables:
-//     parseRow,
-//     // Now I can use this dataset:
-//     makeGraphs
-//   );
-
-// })
+})
 
 const sampleTime = 0.25;     // h
 const normalTarif = 0.05250; // EUR / kWh
@@ -60,9 +33,7 @@ function parseRow(csv_row) {
   }
 }
 
-function parseGreenChoiceRow(csv_row) {
-  return csv_row;
-}
+
 
 function makeGraphs(data) {
   var ndx = crossfilter(data);
