@@ -1,16 +1,43 @@
 // A $( document ).ready() block.
 $(document).ready(function() {
 
-  //Read the data
-  d3.csv(
-    "data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
-    // When reading the csv, I must format variables:
-    parseRow,
-    // Now I can use this dataset:
-    makeGraphs
-  );
+  var sunnyPromise = new Promise(function (resolve, reject) {
+    d3.csv("data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
+      // When reading the csv, I must format variables:
+      parseRow,
+      // Now I can use this dataset:
+      resolve
+    )
+  });
 
-})
+  var greenChoicePromise = new Promise(function (resolve, reject) {
+    d3.csv("data/greenchoice/greenchoice_energy_usage.csv",
+      // When reading the csv, I must format variables:
+      parseGreenChoiceRow,
+      // Now I can use this dataset:
+      resolve
+    )
+  });
+
+  Promise.all([
+    sunnyPromise,
+    greenChoicePromise,
+  ]).then(function(data) {
+    console.log(data[1]);
+    makeGraphs(data[0]);
+  })
+});
+
+  //Read the data
+//   d3.csv(
+//     "data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
+//     // When reading the csv, I must format variables:
+//     parseRow,
+//     // Now I can use this dataset:
+//     makeGraphs
+//   );
+
+// })
 
 const sampleTime = 0.25;     // h
 const normalTarif = 0.05250; // EUR / kWh
@@ -31,6 +58,10 @@ function parseRow(csv_row) {
     tarif: csv_row['power[kW]'] * sampleTime * normalTarif,
     co2: csv_row['power[kW]'] * sampleTime * co2_per_kWh,
   }
+}
+
+function parseGreenChoiceRow(csv_row) {
+  return csv_row;
 }
 
 function makeGraphs(data) {
@@ -112,8 +143,9 @@ function makeHourlyGraph(ndx) {
   // .xUnits(dc.units.ordinal);
   // .xAxisLabel(day[0].date)
   // chart.yAxis().ticks(20);
-  chart.xAxis().ticks(d3.timeHour.every(1));
-  chart.xAxis().tickFormat(d3.timeFormat('%H'));
+  // chart.xAxis().ticks(d3.timeHour.every(1));
+  chart.xAxis().ticks(6);
+  // chart.xAxis().tickFormat(d3.timeFormat('%H'));
   return chart;
 }
 
@@ -140,6 +172,7 @@ function makeDailyGraph(ndx, value_type) {
     .addFilterHandler(function(filters, filter) { return [filter]; });
   // .xAxisLabel(title)
   chart.xAxis().tickFormat(d3.timeFormat('%_d')); // https://github.com/d3/d3-time-format
+
   return chart;
 }
 
@@ -220,5 +253,5 @@ function remove_empty_bins(source_group) {
         return Math.abs(d.value) > 0.0001;
       });
     }
-  };
+  }
 }
