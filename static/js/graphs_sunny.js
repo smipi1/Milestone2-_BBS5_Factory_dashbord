@@ -104,9 +104,11 @@ function makeHourlyGraph(ndx) {
     .transitionDuration(500)
     .elasticX(true)
     .elasticY(true)
-    // .x(d3.scaleLinear())
+    .yAxisLabel("kWh/euro")
+    .addFilterHandler(function(filters, filter) { return [filter]; })
     .x(d3.scaleTime())
     .controlsUseVisibility(true)
+    .renderHorizontalGridLines(true)
     .colors(["orange"])
     .xAxisLabel(function(d){
       console.log(d);
@@ -137,11 +139,13 @@ function makeDailyGraph(ndx, value_type) {
     .xUnits(dc.units.ordinal)
     .elasticX(true)
     .elasticY(true)
+    .xAxisLabel("Day")
+    .yAxisLabel("kWh/euro")
     .colors(["orange"])
     .x(d3.scaleTime())
+    .renderHorizontalGridLines(true)
     .controlsUseVisibility(true)
     .addFilterHandler(function(filters, filter) { return [filter]; });
-  // .xAxisLabel(title)
   chart.xAxis().tickFormat(d3.timeFormat('%_d')); // https://github.com/d3/d3-time-format
 
   return chart;
@@ -164,11 +168,13 @@ function makeMonthyGraph(ndx, value_type) {
     .xUnits(dc.units.ordinal)
     .elasticX(true)
     .elasticY(true)
+    .xAxisLabel("Month")
+    .yAxisLabel("kWh/euro")
     .colors(["orange"])
     .x(d3.scaleTime())
+    .renderHorizontalGridLines(true)
     .controlsUseVisibility(true)
     .addFilterHandler(function(filters, filter) { return [filter]; });
-  // .xAxisLabel(title)
   chart.xAxis().tickFormat(d3.timeFormat('%b'));
   chart.filterPrinter(function(filters) {
     return filters.map(function(f) { return d3.timeFormat('%b')(f) }); //http://dc-js.github.io/dc.js/docs/html/dc.baseMixin.html#filterPrinter__anchor
@@ -193,8 +199,11 @@ function makeYearGraph(ndx, value_type) {
     .xUnits(dc.units.ordinal)
     .elasticX(true)
     .elasticY(true)
+    .xAxisLabel("Year")
+    .yAxisLabel("kWh/euro")
     .colors(["orange"])
     .x(d3.scaleTime())
+    .renderHorizontalGridLines(true)
     .controlsUseVisibility(true)
     .addFilterHandler(function(filters, filter) { return [filter]; });
   // .xAxisLabel(title)
