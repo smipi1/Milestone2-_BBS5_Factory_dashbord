@@ -27,8 +27,8 @@ function parseRow(csv_row) {
     year_string: d3.timeFormat('%Y')(d), // Workaround for dc.selectMenu bug:
                                          // See https://stackoverflow.com/questions/38591613/how-to-create-interaction-with-selectmenu-in-dc-js
     power: csv_row['power[kW]'],
-    energy: csv_row['power[kW]'] * sampleTime,
-    tarif: csv_row['power[kW]'] * sampleTime * normalTarif,
+    kWh: csv_row['power[kW]'] * sampleTime,
+    Euro: csv_row['power[kW]'] * sampleTime * normalTarif,
     co2: csv_row['power[kW]'] * sampleTime * co2_per_kWh,
   }
 }
@@ -38,18 +38,18 @@ function parseRow(csv_row) {
 function makeGraphs(data) {
   var ndx = crossfilter(data);
   
-  updateGraphs(ndx, "energy");
+  updateGraphs(ndx, "kWh");
   graphs.yearSelector.replaceFilter([["2019"]]).redrawGroup(); //  set as default when loading fist time
   
   $( "#value_type" ).change(function() {
     // User changed how to display values: kWh vs Euro
     
     updateGraphs(ndx, this.value);
-    if (this.value === "tarif" ) {
-      // Display graphs for tarif
+    if (this.value === "Euro" ) {
+      // Display graphs for Euro
       $('#g_hour').hide();
     } else {
-      // Display graphs for energy
+      // Display graphs for kWh
       $('#g_hour').show();
     }
   });
@@ -81,7 +81,7 @@ function makeCo2Total(ndx) {
 
 function makeEuro2Total(ndx) {
   var dim = ndx.dimension(dc.pluck('day'));
-  var sumAll = dim.groupAll().reduceSum(dc.pluck('tarif'));
+  var sumAll = dim.groupAll().reduceSum(dc.pluck('Euro'));
   var number = dc.numberDisplay("#euroearned")
     .group(sumAll)
     .valueAccessor(function(d){ return d; })
@@ -104,7 +104,7 @@ function makeHourlyGraph(ndx) {
     .transitionDuration(500)
     .elasticX(true)
     .elasticY(true)
-    .yAxisLabel("kWh/euro")
+    .yAxisLabel("kWh")
     .addFilterHandler(function(filters, filter) { return [filter]; })
     .x(d3.scaleTime())
     .controlsUseVisibility(true)
@@ -126,7 +126,7 @@ function makeDailyGraph(ndx, value_type) {
 
   // var title = d3.timeFormat('%B, %Y kWh produced')(data[0].date);
   var dim = ndx.dimension(dc.pluck('day'));
-  var group = dim.group().reduceSum(dc.pluck('energy'));
+  var group = dim.group().reduceSum(dc.pluck('kWh'));
   var nonEmpty = remove_empty_bins(group);
   var chart = dc.barChart("#g_day")
     .width(400)
@@ -140,7 +140,7 @@ function makeDailyGraph(ndx, value_type) {
     .elasticX(true)
     .elasticY(true)
     .xAxisLabel("Day")
-    .yAxisLabel("kWh/euro")
+    .yAxisLabel(value_type)
     .colors(["orange"])
     .x(d3.scaleTime())
     .renderHorizontalGridLines(true)
@@ -169,7 +169,7 @@ function makeMonthyGraph(ndx, value_type) {
     .elasticX(true)
     .elasticY(true)
     .xAxisLabel("Month")
-    .yAxisLabel("kWh/euro")
+    .yAxisLabel(value_type)
     .colors(["orange"])
     .x(d3.scaleTime())
     .renderHorizontalGridLines(true)
@@ -200,7 +200,7 @@ function makeYearGraph(ndx, value_type) {
     .elasticX(true)
     .elasticY(true)
     .xAxisLabel("Year")
-    .yAxisLabel("kWh/euro")
+    .yAxisLabel(value_type)
     .colors(["orange"])
     .x(d3.scaleTime())
     .renderHorizontalGridLines(true)
