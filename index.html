@@ -104,11 +104,21 @@
     
                 </nav>
                 <div class="row graph_cal">
-                    <div id="g_year" class="col-xs-12 col-sm-6 col-lg-3 calender_g ">
-                        <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                            <a href="javascript:graphs.yearly.filterAll();dc.redrawAll(); ">reset</a>
+                    <div class="col-lg-3 col-md-6 card col-sm-6 text-white bg-info">
+                        <div class="card-header">Yearly Production</div>
+                        <div class="row">
+                            <div id="g_year" class="col-xs-12 col-sm-12 col-lg-12 calender_g ">
+                            <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                                <a href="javascript:graphs.yearly.filterAll();dc.redrawAll(); ">reset</a>
+                            </div>
+                        </div>
                         </div>
                     </div>
+                    <!--<div id="g_year" class="col-xs-12 col-sm-6 col-lg-3 calender_g ">-->
+                    <!--    <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>-->
+                    <!--        <a href="javascript:graphs.yearly.filterAll();dc.redrawAll(); ">reset</a>-->
+                    <!--    </div>-->
+                    <!--</div>-->
                     <div id="g_month" class="col-xs-12 col-sm-6 col-lg-3 calender_g">
                         <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
                             <a href="javascript:graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
@@ -134,20 +144,21 @@
         
         <section>
              <div class="row graph_cal">
-                 <div class="card text-white bg-secondary col-sm-6 col-lg-3 " style="max-width: 40%; max-height:80px;">
-                     <div class="card-header card_select">Choose Year</div>
-                     <div class="card-body cb_remove_padding">
-                         <div id="year-selector_usage" class="col-sm-6"></div>
-                     </div>
-                 </div>
-                 <div id="g_e_usaged" class="col-xs-12 col-sm-6 col-lg-3 calender_g ">
-                     <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                         <a href="javascript:graphs.yearly.filterAll();dc.redrawAll(); ">reset</a>
-                     </div>
-                 </div>
-                 <div id="g_usagevproduction" class="col-xs-12 col-sm-6 col-lg-3 calender_g">
-                     <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                         <a href="javascript:graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
+                 <div class="card text-white bg-secondary col-sm-6 col-lg-6 " style="max-width: 100%; max-height:100%;">
+                     <div class="card-header card_select">Energy usage vs Energy Production </div>
+                     <div class="card-body cb_remove_padding row">
+                         <div id="year-selector_usage" class="col-sm-12"><p> choose year</p></div>
+             
+                         <div id="g_e_usaged" class="col-xs-12 col-sm-6 col-lg-6 calender_g ">
+                             <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                                 <a href="javascript:graphs.yearly.filterAll();dc.redrawAll(); ">reset</a>
+                             </div>
+                         </div>
+                         <div id="g_usagevproduction" class="col-xs-12 col-sm-6 col-lg-6 calender_g">
+                             <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                                 <a href="javascript:graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
+                             </div>
+                         </div>
                      </div>
                  </div>
              </div>

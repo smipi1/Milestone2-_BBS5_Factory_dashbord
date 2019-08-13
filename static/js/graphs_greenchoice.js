@@ -44,7 +44,7 @@ function show_montly_enery_consumption (ndx){
     return chart
 }
 
-function show_comparison_prdvscons (ndx){
+/*function show_comparison_prdvscons (ndx){
   var dim = ndx.dimension(function(d) { return d.date });
   var energy = dim.group().reduceSum(dc.pluck('energy'));
   var produced = dim.group().reduceSum(dc.pluck('produced'));
@@ -81,35 +81,49 @@ function show_comparison_prdvscons (ndx){
     producedChart,
     energyChart,
   ]);
-  return composite;
+  return composite;*/
   
-        
-    
-  // var composite = dc.compositeChart("#g_usagevproduction");
-  // composite
-  //       .width(400)
-  //       .height(400)
-  //       .margins({ top: 10, right: 50, bottom: 30, left: 50 })
-  //       .yAxisLabel("The Y Axis")
-  //       .x(d3.scaleTime())
-  //       .xUnits(dc.units.ordinal)
-  //       .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
-  //       .renderHorizontalGridLines(true)
-  //       .compose([
-  //               // dc.barChart(composite)
-  //               // .dimension(dim)
-  //               // .colors('blue')
-  //               // .group(grp2, "Bars")
-  //               // .centerBar(true),
-  //           dc.lineChart(composite)
-  //               .dimension(dim)
-  //               .colors('red')
-  //               .group(grp1, "Dots")
-  //               .dashStyle([2,2])
-  //           ])
-  //       .brushOn(false);
+  function show_comparison_prdvscons (ndx){
+  var dim = ndx.dimension(function(d) { return d.date });
+  var energy = dim.group().reduceSum(dc.pluck('energy'));
+  var produced = dim.group().reduceSum(dc.pluck('produced'));
 
+  var xScale = d3.scaleTime().domain([
+    dim.bottom(1)[0].date,
+    dim.top(1)[0].date
+  ]);      
+    
+  var composite = dc.compositeChart("#g_usagevproduction")
+  composite
+        .width(400)
+        .height(400)
+        .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+        .transitionDuration(500)
+        .xUnits(dc.units.ordinal)
+        .x(xScale)
+        .controlsUseVisibility(true)
+        // .addFilterHandler(function(filters, filter) { return [filter]; })
+        .xAxisLabel("Month")
+        .yAxisLabel("kWh")
+        .xUnits(d3.timeMonths)
+        .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
+        .renderHorizontalGridLines(true)
+        .compose([
+            dc.barChart(composite)
+                .dimension(dim)
+                .group(energy, "Bars")
+                .colors(["orange"])
+                .centerBar(true),
+            dc.lineChart(composite)
+                .dimension(dim)
+                .colors(['black'])
+                .group(produced, "Energy Produced")
+                .dashStyle([2,2])
+            ])
+        .brushOn(false)
+        composite.xAxis().tickFormat(d3.timeFormat('%_b'));
 }
+return composite;
 
 
 function makeYearSelector(ndx) {
