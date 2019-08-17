@@ -152,30 +152,39 @@
     
         </section>
         
-        <section>
-             <div class="row graph_cal">
-                 <div class="card text-white bg-secondary col-sm-12 col-lg-6 " style="max-width: 100%; max-height:100%;">
-                     <div class="card-header card_select">Energy usage vs Energy Production </div>
-                     <div class="card-body cb_remove_padding row">
-                         <div id="year-selector_usage" class="col-sm-12"><p> choose year</p></div>
-             
-                         <div id="g_e_usaged" class="col-xs-12 col-sm-6 col-lg-6 calender_g ">
-                             <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                                 <a href="javascript:graphs.yearly.filterAll();dc.redrawAll(); ">reset</a>
-                             </div>
-                         </div>
-                         <div id="g_usagevproduction" class="col-xs-12 col-sm-6 col-lg-6 calender_g">
-                             <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                                 <a href="javascript:graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-            
-            
-            
-        </section>
+    <section>
+        <div class="row graph_cal">
+            <div class="card text-white bg-secondary col-sm-12 col-lg-6 " style="max-width: 100%; max-height:100%;">
+                <div class="card-header card_select">Energy usage vs Energy Production </div>
+                <div class="card-body cb_remove_padding row">
+                    <div id="year-selector_usage" class="col-sm-12">
+                        <p> choose year</p>
+                    </div>
+    
+                    <div id="g_e_usaged" class="col-xs-12 col-sm-6 col-lg-6 calender_g ">
+                        <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                            <a href="javascript:graphs.yearly.filterAll();dc.redrawAll(); ">reset</a>
+                        </div>
+                    </div>
+                    <div id="g_usagevproduction" class="col-xs-12 col-sm-6 col-lg-6 calender_g">
+                        <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                            <a href="javascript:graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+              <div class="card text-white bg-primary col-sm-12 col-lg-6" style="max-width: 100%; max-height:100%;">
+                  <div class="card-header card_select">Sun power</div>
+                  <div class="card-body cb_remove_padding">
+                      <div id="heat_map" class="col-xs-12 col-sm-6 col-lg-6 calender_g style="width: 420px; height: 400px"></div>
+                  </div>
+              </div>   
+        </div>
+                             
+                             
+    </section>
     </main>
 
 </body>
