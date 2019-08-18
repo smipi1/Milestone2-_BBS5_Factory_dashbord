@@ -1,18 +1,20 @@
 $(document).ready(function() {
     queue()
         .defer(d3.csv, "data/knmi/knmi_20190813.csv", parseKnmiRow)
-        .await(makeGrGraphs)
+        .await(makeGrGraphs);
 });
 
 function parseKnmiRow(d) {
+    var date = d3.timeParse("%Y%m%d")(d["YYYYMMDD"]);
     return {
-        date: d3.timeParse("%Y%m%d")(d["YYYYMMDD"]),
+        date: date,
+        sunMonth: new Date(date.getFullYear(), date.getMonth(), 1),
         "LON(east)": parseFloat(d["LON(east)"]),
         "LAT(north)": parseFloat(d["LAT(north)"]),
         sunShineHour: parseFloat(d['SQ']),
         sunShineduration: parseFloat(d['SP']),
         globalRadiationJcm2: parseFloat(d['Q']),
-        weatherStation:(d['NAME']),
+        weatherStation: d['NAME'],
     };
 }
 
@@ -29,7 +31,7 @@ function makeGrGraphs(error, knmiData) {
 
     var nextDate = new Date(minDate);
     makeWeatherStationSelector(ndx);
-
+    makeSunMonthyGraph(ndx);
 
     var map = L.map('heat_map', {
         timeDimension: true,
@@ -93,4 +95,35 @@ function makeWeatherStationSelector(ndx) {
     return d.key;
   });
   return select;
+}
+
+function makeSunMonthyGraph(ndx) {
+
+
+  var dim = ndx.dimension(dc.pluck('sunMonth'));
+  var group = dim.group().reduceSum(dc.pluck('globalRadiationJcm2'));
+  var nonEmpty = remove_empty_bins(group);
+  var chart = dc.barChart("#sunpower_month")
+    .width(550)
+    .height(410)
+    .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+    .dimension(dim)
+    .group(nonEmpty)
+    .transitionDuration(500)
+    .x(d3.scaleBand())
+    .xUnits(dc.units.ordinal)
+    .elasticX(true)
+    .elasticY(true)
+    .xAxisLabel("Month")
+    .yAxisLabel("Sun power")
+    .colors(["orange"])
+    .x(d3.scaleTime())
+    .renderHorizontalGridLines(true)
+    .controlsUseVisibility(true)
+    .addFilterHandler(function(filters, filter) { return [filter]; });
+  chart.xAxis().tickFormat(d3.timeFormat('%b'));
+  chart.filterPrinter(function(filters) {
+    return filters.map(function(f) { return d3.timeFormat('%b')(f) }); //http://dc-js.github.io/dc.js/docs/html/dc.baseMixin.html#filterPrinter__anchor
+  });
+  return chart;
 }
