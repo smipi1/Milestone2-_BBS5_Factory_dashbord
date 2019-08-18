@@ -12,7 +12,7 @@ function parseKnmiRow(d) {
         sunShineHour: parseFloat(d['SQ']),
         sunShineduration: parseFloat(d['SP']),
         globalRadiationJcm2: parseFloat(d['Q']),
-        d:d,
+        weatherStation:(d['NAME']),
     };
 }
 
@@ -28,7 +28,7 @@ function makeGrGraphs(error, knmiData) {
     var timeInterval = d3.timeFormat("%Y-%m-%d")(minDate) + "/" + d3.timeFormat("%Y-%m-%d")(maxDate);
 
     var nextDate = new Date(minDate);
-    
+    makeWeatherStationSelector(ndx);
 
 
     var map = L.map('heat_map', {
@@ -79,5 +79,18 @@ function makeGrGraphs(error, knmiData) {
 
 
     drawMap();
+    dc.renderAll();
 }
 
+function makeWeatherStationSelector(ndx) {
+  var dim = ndx.dimension(dc.pluck('weatherStation'));
+  var group = dim.group().reduceSum(dc.pluck('globalRadiationJcm2'));
+
+  var select = dc.selectMenu("#location-selector")
+    .dimension(dim)
+    .group(group);
+  select.title(function(d){
+    return d.key;
+  });
+  return select;
+}

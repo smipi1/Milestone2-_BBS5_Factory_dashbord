@@ -147,7 +147,17 @@ main{
     overflow: scroll;
 }
 
+.footer {
+    min-height: 50px;
+    background-color: #107c10;
+    justify-content: space-around;
+    position: relative;
+    width: 100%;
+}
 
+#heat_map{
+    min-height:400px;
+}
 
 
 
