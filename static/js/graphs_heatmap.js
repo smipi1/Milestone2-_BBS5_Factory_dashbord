@@ -127,3 +127,15 @@ function makeSunMonthyGraph(ndx) {
   });
   return chart;
 }
+
+function remove_empty_bins(source_group) {
+  return {
+    all: function() {
+      return source_group.all().filter(function(d) {
+        // Filter out zero values
+        // float is never exactly 0, so we filter out small values
+        return Math.abs(d.value) > 0.0001;
+      });
+    }
+  }
+}
