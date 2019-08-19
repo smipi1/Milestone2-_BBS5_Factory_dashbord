@@ -1,3 +1,4 @@
+var consuption_graphs;
 $(document).ready(function() {
   queue()
     .defer(d3.csv, "data/greenchoice/greenchoice_energy_usage.csv", parseGrRow)
@@ -5,8 +6,11 @@ $(document).ready(function() {
 
   function makeGrGraphs(error, greenchoiceData) {
     var ndx = crossfilter(greenchoiceData);
-    show_comparison_prdvscons(ndx);
-    show_montly_enery_consumption(ndx);
+    consuption_graphs={
+      comparison:show_comparison_prdvscons(ndx),
+      consumption:show_montly_enery_consumption(ndx),
+    }
+    
     makeYearSelector(ndx);
     dc.renderAll();
   }
@@ -47,44 +51,6 @@ $(document).ready(function() {
     return chart
   }
 
-  /*function show_comparison_prdvscons (ndx){
-    var dim = ndx.dimension(function(d) { return d.date });
-    var energy = dim.group().reduceSum(dc.pluck('energy'));
-    var produced = dim.group().reduceSum(dc.pluck('produced'));
-
-    var xScale = d3.scaleTime().domain([
-      dim.bottom(1)[0].date,
-      dim.top(1)[0].date
-    ]);
-
-    var composite = dc.compositeChart("#g_usagevproduction")
-      .width(400)
-      .height(400)
-      .margins({ top: 10, right: 50, bottom: 30, left: 50 })
-      .transitionDuration(500)
-      .xUnits(dc.units.ordinal)
-      .x(xScale)
-      .controlsUseVisibility(true)
-      // .addFilterHandler(function(filters, filter) { return [filter]; })
-      .xAxisLabel("Energy produced")
-      .xUnits(d3.timeMonths);
-    composite.xAxis().tickFormat(d3.timeFormat('%_b'));
-        
-    var producedChart = dc.barChart(composite)
-      .dimension(dim)
-      .group(produced)
-      .colors(["orange"])
-
-    var energyChart = dc.lineChart(composite)
-      .dimension(dim)
-      .group(energy)
-      .colors(["blue"])
-
-    composite.compose([
-      producedChart,
-      energyChart,
-    ]);
-    return composite;*/
 
   function show_comparison_prdvscons(ndx) {
     var dim = ndx.dimension(function(d) { return d.date });
@@ -105,7 +71,6 @@ $(document).ready(function() {
       .xUnits(dc.units.ordinal)
       .x(xScale)
       .controlsUseVisibility(true)
-      .addFilterHandler(function(filters, filter) { return [filter]; })
       .xAxisLabel("Month")
       .yAxisLabel("kWh")
       .xUnits(d3.timeMonths)
@@ -116,14 +81,15 @@ $(document).ready(function() {
         .dimension(dim)
         .group(energy, "Bars")
         .colors(["orange"])
-        .centerBar(true),
+        .centerBar(true)
+        .addFilterHandler(function(filters, filter) { return [filter]; }),
         dc.lineChart(composite)
         .dimension(dim)
         .colors(['black'])
         .group(produced, "Energy Produced")
         .dashStyle([2, 2])
       ])
-      .brushOn(false)
+      .brushOn(true)
     composite.xAxis().tickFormat(d3.timeFormat('%_b'));
     return composite;
   }

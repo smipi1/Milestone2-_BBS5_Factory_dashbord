@@ -1,14 +1,14 @@
 // A $( document ).ready() block.
 $(document).ready(function() {
 
-//Read the data
-d3.csv(
- "data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
- // When reading the csv, I must format variables:
-parseRow,
-// Now I can use this dataset:
-makeGraphs
-);
+  //Read the data
+  d3.csv(
+    "data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
+    // When reading the csv, I must format variables:
+    parseRow,
+    // Now I can use this dataset:
+    makeGraphs
+  );
 
 })
 
