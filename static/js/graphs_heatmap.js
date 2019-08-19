@@ -78,7 +78,6 @@ function makeGrGraphs(error, knmiData) {
         var heat = L.heatLayer(geoData, {
             radius: 50,
             blur: 15,
-            maxZoom: 6,
             max: maxRadiation,
 
         }).addTo(map);

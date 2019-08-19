@@ -146,6 +146,12 @@ main{
 .calender_g{
     overflow: scroll;
 }
+#g_e_usaged{
+     text-align:center;
+}
+#g_usagevproduction{
+     text-align:center;
+}
 
 #sunpower_month{
     display:inline-block;
