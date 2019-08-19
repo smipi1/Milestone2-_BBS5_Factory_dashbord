@@ -82,7 +82,16 @@ function makeGrGraphs(error, knmiData) {
         }).addTo(map);
     }
 
-
+    //Update the heatmap if any dc chart get filtered
+    _.each(heat_graphs, function(dcChart) {
+        dcChart.on("filtered", function(chart, filter) {
+            map.eachLayer(function(layer) {
+                map.removeLayer(layer)
+            });
+            drawMap();
+        });
+    });
+    
     drawMap();
     dc.renderAll();
 }
