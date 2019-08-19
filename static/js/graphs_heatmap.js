@@ -11,6 +11,7 @@ function parseKnmiRow(d) {
     return {
         date: date,
         sunMonth: new Date(date.getFullYear(), date.getMonth(), 1),
+        // sunDay: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
         "LON(east)": parseFloat(d["LON(east)"]),
         "LAT(north)": parseFloat(d["LAT(north)"]),
         sunShineHour: parseFloat(d['SQ']),
@@ -34,6 +35,7 @@ function makeGrGraphs(error, knmiData) {
     heat_graphs = {
         stationselect: makeWeatherStationSelector(ndx),
         monthly: makeSunMonthyGraph(ndx),
+        daily: makeSunDailyGraph(ndx),
     };
 
     var map = L.map('heat_map', {
@@ -116,8 +118,8 @@ function makeSunMonthyGraph(ndx) {
     var group = dim.group().reduceSum(dc.pluck('globalRadiationJcm2'));
     var nonEmpty = remove_empty_bins(group);
     var chart = dc.barChart("#sunpower_month")
-        .width(550)
-        .height(410)
+        .width(400)
+        .height(400)
         .margins({ top: 10, right: 50, bottom: 30, left: 50 })
         .dimension(dim)
         .group(nonEmpty)
@@ -138,6 +140,33 @@ function makeSunMonthyGraph(ndx) {
         return filters.map(function(f) { return d3.timeFormat('%b')(f) }); //http://dc-js.github.io/dc.js/docs/html/dc.baseMixin.html#filterPrinter__anchor
     });
     return chart;
+}
+
+function makeSunDailyGraph(ndx) {
+  var dim = ndx.dimension(dc.pluck('date'));
+  var group = dim.group().reduceSum(dc.pluck('globalRadiationJcm2'));
+  var nonEmpty = remove_empty_bins(group);
+  var chart = dc.barChart("#sunpower_day")
+    .width(400)
+    .height(400)
+    .margins({ top: 10, right: 50, bottom: 30, left: 50 })
+    .dimension(dim)
+    .group(nonEmpty)
+    .transitionDuration(500)
+    .x(d3.scaleBand())
+    .xUnits(dc.units.ordinal)
+    .elasticX(true)
+    .elasticY(true)
+    .xAxisLabel("Day")
+    .yAxisLabel("Sun power")
+    .colors(["orange"])
+    .x(d3.scaleTime())
+    .renderHorizontalGridLines(true)
+    .controlsUseVisibility(true)
+    .addFilterHandler(function(filters, filter) { return [filter]; });
+  chart.xAxis().tickFormat(d3.timeFormat('%_d')); // https://github.com/d3/d3-time-format
+
+  return chart;
 }
 
 function remove_empty_bins(source_group) {

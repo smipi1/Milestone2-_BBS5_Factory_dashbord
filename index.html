@@ -184,36 +184,44 @@
                     <div class="card-body cb_remove_padding">
                     </div>
                     <div id="heat_map" class="col-xs-12 col-sm-12 col-lg-12" style="width: 100%; min-height: 500px; display: inline-block;"></div>
-                  
+
                 </div>
-
-
-                <div class="card text-white bg-primary col-sm-12 col-lg-6" style="max-width: 100%; max-height:100%;">
+            
+            
+                <div class="card text-white bg-primary col-sm-12 col-lg-6" style="max-width: 100%; max-height:100%; display:block;">
                     <div class="card-header card_select">Sun power</div>
-                    <div class="card-body cb_remove_padding">
-
-                    </div>
-                    <div id="location-selector" class="col-xs-12 col-sm-12 col-lg-6" style="max-width: 40%; max-height:80px;"></div>
-                    <div id="sunpower_month" class="col-xs-12 col-sm-12 col-lg-12 calender_g">
-                    <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                        <a href="javascript:heat_graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
+                        <div class="card-body cb_remove_padding">
+                            <div id="location-selector" class="col-sm-12" style="max-width: 40%; max-height:80px;">
+                               <p> choose Weather Station</p> 
+                            </div>
+                        
+                            <div id="sunpower_month" class="col-xs-12 col-sm-6 col-lg-6 calender_g">
+                                <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                                    <a href="javascript:heat_graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
+                                </div>
+                            </div>
+                           <div id="sunpower_day" class="col-xs-12 col-sm-6 col-lg-6 calender_g">
+                                <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                                    <a href="javascript:heat_graphs.daily.filterAll();dc.redrawAll(); ">reset</a>
+                                </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </section>
+     
     </main>
-    
-    
+
+
     <footer class="container-fluid footer">
-            <div class="row footer-content">
-                <div class="col-xs-12 col-sm-6">
-                    <div class="footer-links">Original datasets from <span><a href="" target="_blank"><img src="" class=""/></a></span>.</div>
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                    <div><a href="" class="footer-links" target="_blank">&copy;2019 Yvette Smith</a></div>
-                </div>
+        <div class="row footer-content">
+            <div class="col-xs-12 col-sm-6">
+                <div class="footer-links">Original datasets from <span><a href="" target="_blank"><img src="" class=""/></a></span>.</div>
             </div>
+            <div class="col-xs-12 col-sm-6">
+                <div><a href="" class="footer-links" target="_blank">&copy;2019 Yvette Smith</a></div>
+            </div>
+        </div>
     </footer>
 </body>
 

@@ -147,11 +147,20 @@ main{
     overflow: scroll;
 }
 
+#sunpower_month{
+    display:inline-block;
+    text-align:center;
+}
+#sunpower_day{
+    float:right;
+    text-align:center;
+}
+
 .footer {
     min-height: 50px;
-    background-color: #107c10;
+    background-color: #29ABE0;
     justify-content: space-around;
-    position: relative;
+    position: absolute;
     width: 100%;
 }
 
