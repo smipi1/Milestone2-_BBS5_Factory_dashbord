@@ -56,13 +56,14 @@
     </div>
 </div>
 
+
 <!-- Main Content -->
     <main>
 
         <section class="allign_section container">
-
+<!-- Summeries -->
             <div class="row">
-                <div class="col-12 col-lg-6 text-white bg-info">
+                <div class="col-12 col-lg-3 text-white bg-info">
                     <div class="card-header">Bert Buijsenstraat 5</div>
                     <p class="card-text">Solar panel home instalation location and image</p>
                     <div class="row">
@@ -70,20 +71,20 @@
                         <div id="house" class="col-lg-6 col-md-12"></div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 bg-light">
+                <div class="col-12 col-lg-3 bg-light">
                     <div class="card-header">Instalation details</div>
                     <div class="row">
                         <div id="instalation" class="col-lg-12 col-md-12"></div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 text-white bg-info">
+                <div class="col-12 col-lg-3 text-white bg-info">
                     <div class="card-header">CO2 avoided as per graph selection</div>
                     <div class="card-body row">
                         <i id="leaf" aria-hidden="true"></i> <span class="number-box" id="co2Avoided"> </span>
                     </div>
                 </div>
 
-                <div class="col-12 col-lg-6 card bg-light">
+                <div class="col-12 col-lg-3 card bg-light">
                     <div class="card-header">Yield as per graph selection</div>
                     <div class="card-body row">
                         <i id="euro" aria-hidden="true"></i> <span class="number-box" id="euroearned"> </span>
@@ -91,68 +92,67 @@
                 </div>
 
             </div>
-
+<!-- Solar panel production monitor graphs selectors -->
             <div class="row monitor_graphs">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light col-xs-12 col-sm-12 ">
-                    <div class="col-sm-8 col-lg-6">
-                        <p class="headings_graphs_sections ">
-                            <i class="fas fa-solar-panel fa-2x allign_icon_panel " aria-hidden="true "></i>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light col-12">
+                    <div class="col-12 col-lg-6">
+                        <p class="headings_graphs_sections">
+                                <i class="fas fa-solar-panel fa-2x allign_icon_panel" aria-hidden="true "></i></p>
                             <h2>Solar production history</h2>
-                        </p>
                     </div>
-                    <div class="card text-white bg-secondary col-sm-6 col-lg-3 " style="max-width: 40%; max-height:80px;">
+                    <div class="card text-white bg-secondary col-12 col-lg-3" style="max-width: 40%; max-height:100px;">
                         <div class="card-header card_select">Choose Year</div>
                         <div class="card-body cb_remove_padding">
-                            <div id="year-selector" class="col-sm-6"></div>
+                            <div id="year-selector" class="col-12"></div>
                         </div>
                     </div>
 
-                    <div class="card text-white bg-primary col-sm-6 col-lg-3" style="max-width: 40%; max-height:80px;">
+                    <div class="card text-white bg-primary col-12 col-lg-3" style="max-width: 40%; max-height:100px;">
                         <div class="card-header card_select">kWh / Euro</div>
                         <div class="card-body cb_remove_padding ">
-                            <select id="value_type" class="col-sm-6 ">
+                            <select id="value_type" class="col-12">
                                 <option value="kWh" selected="selected ">kWh</option>
                                 <option value="Euro">Euro</option>
                             </select>
                         </div>
                     </div>
-
                 </nav>
+<!-- Solar panel production monitor graphs -->
                 <div class="row graph_cal">
-                    <div class="col-lg-3 col-md-6 card col-sm-6 text-white bg-info">
+                    <div class="col-12 col-lg-6 text-white bg-info">
                         <div class="card-header">Yearly Production</div>
                         <div class="row">
-                            <div id="g_year" class="col-xs-12 col-sm-12 col-lg-12 calender_g ">
+                            <div id="g_year" class="col-12  calender_g ">
                                 <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
                                     <a href="javascript:graphs.yearly.filterAll();dc.redrawAll(); ">reset</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 card col-sm-6 text-white bg-info">
+                    <div class="col-12 col-lg-6 text-white bg-info">
                         <div class="card-header">Montly Production</div>
                         <div class="row">
-                            <div id="g_month" class="col-xs-12 col-sm-12 col-lg-12 calender_g">
+                            <div id="g_month" class="col-12  calender_g">
                                 <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
                                     <a href="javascript:graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 card col-sm-6 text-white bg-info">
+                    <div class="col-12 col-lg-6 text-white bg-info">
                         <div class="card-header">Daily Production</div>
                         <div class="row">
-                            <div id="g_day" class="col-xs-12 col-sm-12 col-lg-12 calender_g">
+                            <div id="g_day" class="col-12 calender_g">
                                 <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
                                     <a href="javascript:graphs.daily.filterAll();dc.redrawAll(); ">reset</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 card col-sm-6 text-white bg-info">
+                    <div class="col-12 col-lg-6 text-white bg-info">
                         <div class="card-header">Hour Production</div>
                         <div class="row">
-                            <div id="g_hour" class="col-xs-12 col-sm-12 col-lg-12 text-center calender_g ">
+                            <div id="g_hour" class="col-12 text-center calender_g ">
                                 <!--<div><h4> Hourly power output</h4></div>-->
                                 <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
                                     <a href="javascript:graphs.daily.filterAll();dc.redrawAll(); ">reset</a>
@@ -161,75 +161,79 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
         </section>
 
-        <section>
-            <div class="row graph_cal">
-                <div class="card text-white bg-secondary col-sm-12 col-lg-6 " style="max-width: 100%; max-height:100%;">
-                    <div class="card-header card_select">Energy usage vs Energy Production </div>
-                    <div class="card-body cb_remove_padding row">
-                        <div id="year-selector_usage" class="col-sm-12">
-                            <p> choose year</p>
+    <section>
+        <!-- Usage vs production graphs -->
+        <div class="row graph_cal">
+            <div class="card text-white bg-secondary col-12 col-lg-6" style="max-width: 100%; max-height:100%;">
+                <div class="card-header card_select">Energy usage vs Energy Production </div>
+                <div class="card-body cb_remove_padding row">
+                    <div id="year-selector_usage" class="col-12">
+                        <p> choose year</p>
+                    </div>
+    
+                    <div id="g_e_usaged" class="col-12 col-lg-6 calender_g ">
+                        <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                            <a href="javascript:consuption_graphs.consumption.filterAll();dc.redrawAll(); ">reset</a>
                         </div>
-            
-                        <div id="g_e_usaged" class="col-xs-12 col-sm-6 col-lg-6 calender_g ">
-                            <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                                <a href="javascript:consuption_graphs.consumption.filterAll();dc.redrawAll(); ">reset</a>
-                            </div>
-                        </div>
-                        <div id="g_usagevproduction" class="col-xs-12 col-sm-6 col-lg-6 calender_g">
-                            <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                                <a href="javascript:consuption_graphs.comparison.filterAll();dc.redrawAll(); ">reset</a>
-                            </div>
+                    </div>
+                    <div id="g_usagevproduction" class="col-12 col-lg-6 calender_g">
+                        <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                            <a href="javascript:consuption_graphs.comparison.filterAll();dc.redrawAll(); ">reset</a>
                         </div>
                     </div>
                 </div>
-                <div class="card text-white bg-secondary col-sm-12 col-lg-6 " style="max-width: 100%; max-height:100%;">
-                    <div class="card-header card_select">Sunpower comparison vs Production </div>
-                    <div class="card-body cb_remove_padding row">
-                        <div id="year-selector_usage" class="col-sm-12">
-                            <p> choose year</p>
-                        </div>
-            
-                        <div id="g_comparison" class="col-xs-12 col-sm-12 col-lg-12 calender_g ">
-                            <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                                <a href="javascript:consuption_graphs.consumption.filterAll();dc.redrawAll(); ">reset</a>
-                            </div>
-                        </div>
-                </div>    
             </div>
+            <!-- Scatter plot -->
+            <div class="card text-white bg-secondary col-12 col-lg-6 " style="max-width: 100%; max-height:100%;">
+                <div class="card-header card_select">Sunpower comparison vs Production </div>
+                <div class="card-body cb_remove_padding row">
+                    <div id="year-selector_usage" class="col-12">
+                        <p> choose year</p>
+                    </div>
+    
+                    <div id="g_comparison" class="col-12 col-lg-6 calender_g ">
+                        <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                            <a href="javascript:consuption_graphs.consumption.filterAll();dc.redrawAll(); ">reset</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Heat map with sunpower maps -->
             <div class="row graph_cal">
-                <div class="card text-white bg-primary col-sm-12 col-lg-6" style="max-width: 100%; max-height:100%; display:block;">
+                <div class="card text-white bg-primary col-12 col-lg-6" style="max-width: 100%; max-height:100%; display:block;">
                     <div class="card-header card_select">Sun power</div>
                     <div class="card-body cb_remove_padding">
                     </div>
-                    <div id="heat_map" class="col-xs-12 col-sm-12 col-lg-12" style="width: 100%; min-height: 500px; display: inline-block;"></div>
-
+                    <div id="heat_map" class="col-12" style="width: 100%; min-height: 500px; display: inline-block;"></div>
+    
                 </div>
-            
-            
-                <div class="card text-white bg-primary col-sm-12 col-lg-6" style="max-width: 100%; max-height:100%; display:block;">
+    
+    
+                <div class="card text-white bg-primary col-12 col-lg-6" style="max-width: 100%; max-height:100%; display:block;">
                     <div class="card-header card_select">Sun power</div>
-                        <div class="card-body cb_remove_padding">
-                            <div id="location-selector" class="col-sm-12" style="max-width: 40%; max-height:80px;">
-                               <p> choose Weather Station</p> 
+                    <div class="card-body cb_remove_padding">
+                        <div id="location-selector" class="col-sm-12" style="max-width: 40%; max-height:80px;">
+                            <p> choose Weather Station</p>
+                        </div>
+    
+                        <div id="sunpower_month" class="col-12 col-lg-6 calender_g">
+                            <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                                <a href="javascript:heat_graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
                             </div>
-                        
-                            <div id="sunpower_month" class="col-xs-12 col-sm-6 col-lg-6 calender_g">
-                                <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                                    <a href="javascript:heat_graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
-                                </div>
+                        </div>
+                        <div id="sunpower_day" class="col-12 col-lg-6 calender_g">
+                            <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
+                                <a href="javascript:heat_graphs.daily.filterAll();dc.redrawAll(); ">reset</a>
                             </div>
-                           <div id="sunpower_day" class="col-xs-12 col-sm-6 col-lg-6 calender_g">
-                                <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                                    <a href="javascript:heat_graphs.daily.filterAll();dc.redrawAll(); ">reset</a>
-                                </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
      
     </main>
 

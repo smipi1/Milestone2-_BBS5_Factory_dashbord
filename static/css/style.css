@@ -143,9 +143,9 @@ main{
 .graph_cal{
     width: 100%;
 }
-.calender_g{
+/*.calender_g{
     overflow: scroll;
-}
+}*/
 #g_e_usaged{
      text-align:center;
 }
