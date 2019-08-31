@@ -1,16 +1,17 @@
-var consuption_graphs;
 $(document).ready(function() {
   queue()
     .defer(d3.csv, "data/greenchoice/greenchoice_energy_usage.csv", parseGrRow)
     .await(makeGrGraphs);
 
+  var consuption_graphs;
+
   function makeGrGraphs(error, greenchoiceData) {
     var ndx = crossfilter(greenchoiceData);
-    consuption_graphs={
-      comparison:show_comparison_prdvscons(ndx),
-      consumption:show_montly_enery_consumption(ndx),
+    consuption_graphs = {
+      comparison: show_comparison_prdvscons(ndx),
+      consumption: show_montly_enery_consumption(ndx),
     }
-    
+
     makeYearSelector(ndx);
     dc.renderAll();
   }
@@ -107,4 +108,16 @@ $(document).ready(function() {
     });
     return select;
   }
+
+    function remove_empty_bins(source_group) {
+        return {
+            all: function() {
+                return source_group.all().filter(function(d) {
+                    // Filter out zero values
+                    // float is never exactly 0, so we filter out small values
+                    return Math.abs(d.value) > 0.0001;
+                });
+            }
+        }
+    }
 })
