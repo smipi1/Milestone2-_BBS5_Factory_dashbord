@@ -56,7 +56,7 @@
             <lu>
                 <li>Solar production monitor. Yearly to daily graphs</li>
                 <li>Energy usage vs Production rate you can see the actual montly usage and a composite chart to compare</li>
-                <li>Correlation graph will be to see if the production and the sun radiation show descrepencies</li>
+                <li>Correlation graph will be to see if the production in kWh and the sun Radiation Jcm2 show a pattern</li>
                 <li>Sun radiation map with graph to select per weather station</li>
             </lu>
         </p>
@@ -107,14 +107,14 @@
                                 <i class="fas fa-solar-panel fa-2x allign_icon_panel" aria-hidden="true "></i></p>
                             <h2>Solar production history</h2>
                     </div>
-                    <div class="card text-white bg-secondary col-12 col-lg-3" style="max-width: 40%; max-height:100px;">
+                    <div class="card text-white bg-secondary col-12 col-lg-3 monitor_graphs_selector_style">
                         <div class="card-header card_select">Choose Year</div>
                         <div class="card-body cb_remove_padding">
                             <div id="year-selector" class="col-12"></div>
                         </div>
                     </div>
 
-                    <div class="card text-white bg-primary col-12 col-lg-3" style="max-width: 40%; max-height:100px;">
+                    <div class="card text-white bg-primary col-12 col-lg-3 monitor_graphs_selector_style" >
                         <div class="card-header card_select">kWh / Euro</div>
                         <div class="card-body cb_remove_padding ">
                             <select id="value_type" class="col-12">
@@ -174,7 +174,7 @@
     <section>
 <!-- Usage vs production graphs -->
         <div class="row graph_cal">
-            <div class="card text-white bg-secondary col-12 col-lg-6" style="max-width: 100%; max-height:100%;">
+            <div class="card text-white bg-secondary col-12 col-lg-6 scater_usage_style_graph">
                 <div class="card-header card_select">Energy usage vs Energy Production </div>
                 <div class="card-body cb_remove_padding row">
                     <div id="year-selector_usage" class="col-12">
@@ -195,35 +195,35 @@
             </div>
             
 <!-- Scatter plot -->
-            <div class="card text-white bg-secondary col-12 col-lg-6 " style="max-width: 100%; max-height:100%;">
+            <div class="card text-white bg-secondary col-12 col-lg-6 scater_usage_style_graph">
                 <div class="card-header card_select">Sunpower comparison vs Production </div>
                 <div class="card-body cb_remove_padding row">
-                    <div id="year-selector_usage" class="col-12">
+                    <div id="year-selector_scatter" class="col-12">
                         <p> choose year</p>
                     </div>
     
                     <div id="g_comparison" class="col-12 col-lg-6 calender_g ">
                         <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
-                            <a href="javascript:consuption_graphs.consumption.filterAll();dc.redrawAll(); ">reset</a>
+                            <a href="javascript:correlation_graph.filterAll();dc.redrawAll(); ">reset</a>
                         </div>
                     </div>
                 </div>
             </div>
 <!-- Heat map with sunpower maps -->
             <div class="row graph_cal">
-                <div class="card text-white bg-primary col-12 col-lg-6" style="max-width: 100%; max-height:100%; display:block;">
+                <div class="card text-white bg-primary col-12 col-lg-6 heat_map_style">
                     <div class="card-header card_select">Sun power</div>
                     <div class="card-body cb_remove_padding">
                     </div>
-                    <div id="heat_map" class="col-12" style="width: 100%; min-height: 500px; display: inline-block;"></div>
+                    <div id="heat_map" class="col-12"></div>
     
                 </div>
     
     
-                <div class="card text-white bg-primary col-12 col-lg-6" style="max-width: 100%; max-height:100%; display:block;">
+                <div class="card text-white bg-primary col-12 col-lg-6 heat_map_style">
                     <div class="card-header card_select">Sun power</div>
                     <div class="card-body cb_remove_padding">
-                        <div id="location-selector" class="col-sm-12" style="max-width: 40%; max-height:80px;">
+                        <div id="location-selector" class="col-sm-12" >
                             <p> choose Weather Station</p>
                         </div>
     
