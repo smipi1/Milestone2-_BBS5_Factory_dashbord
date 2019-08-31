@@ -1,7 +1,7 @@
 // A $( document ).ready() block.
 $(document).ready(function() {
 
-  //Read the data
+  //Read the dataget 
   d3.csv(
     "data/sunny/Energie_en_vermogen_Alle_Dagen.csv",
     // When reading the csv, I must format variables:

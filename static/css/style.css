@@ -82,7 +82,7 @@ main{
 #house {
     background: url("../../assets/house.jpg");
     background-size:cover;
-    min-height: 150px;
+    height: auto;
     width: 100%;
 }
 
@@ -170,8 +170,15 @@ main{
     width: 100%;
 }
 
+.jumbotron {
+    margin:0px;
+}
 
-
+.container_jumbo {
+    margin:0px 10px 0px 10px;
+    text-align:center;
+    display:inline;
+}
 
 
 
