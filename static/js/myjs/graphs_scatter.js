@@ -53,7 +53,7 @@ $(document).ready(function() {
     function makeScGraphs(data) {
         var ndx = crossfilter(data);
         correlation_graph(ndx);
-        makeScSelector(ndx);
+        // makeScSelector(ndx);
         dc.renderAll();
     }
 
@@ -64,7 +64,7 @@ $(document).ready(function() {
             return [d.kWh, d.globalRadiationJcm2, d.day];
         });
         var group = dim.group();
-        var nonEmpty = remove_empty_bins(group);
+        // var nonEmpty = remove_empty_bins(group);
 
         dc.scatterPlot("#g_comparison")
             .width(800)
@@ -79,8 +79,8 @@ $(document).ready(function() {
             .xAxisLabel("kWh")
             .yAxisLabel("Radiation Jcm2")
             .renderHorizontalGridLines(true)
-            .controlsUseVisibility(true)
-            .mouseZoomable(true)
+            // .controlsUseVisibility(true)
+            // .mouseZoomable(true)
             .addFilterHandler(function(filters, filter) { return [filter]; })
             .elasticX(true)
             .elasticY(true)
@@ -90,32 +90,32 @@ $(document).ready(function() {
                     ", energy: " + d3.format(".1f")(d.key[0]) + " kWh";
             })
             .dimension(dim)
-            .group(nonEmpty);
-    }
-
-    function makeScSelector(ndx) {
-        var dim = ndx.dimension(dc.pluck("month"));
-        var group = dim.group().reduceSum(dc.pluck('day'));
-
-        var select = dc.selectMenu("#year-selector_scatter")
-            .dimension(dim)
             .group(group);
-        select.title(function(d) {
-            return d.key;
-        });
-        return select;
     }
 
-    function remove_empty_bins(source_group) {
-        return {
-            all: function() {
-                return source_group.all().filter(function(d) {
-                    // Filter out zero values
-                    // float is never exactly 0, so we filter out small values
-                    return Math.abs(d.value) > 0.0001;
-                });
-            }
-        };
-    }
+    // function makeScSelector(ndx) {
+    //     var dim = ndx.dimension(dc.pluck("month"));
+    //     var group = dim.group().reduceSum(dc.pluck('day'));
+
+    //     var select = dc.selectMenu("#year-selector_scatter")
+    //         .dimension(dim)
+    //         .group(group);
+    //     select.title(function(d) {
+    //         return d.key;
+    //     });
+    //     return select;
+    // }
+
+    // function remove_empty_bins(source_group) {
+    //     return {
+    //         all: function() {
+    //             return source_group.all().filter(function(d) {
+    //                 // Filter out zero values
+    //                 // float is never exactly 0, so we filter out small values
+    //                 return Math.abs(d.value) > 0.0001;
+    //             });
+    //         }
+    //     };
+    // }
 
 });

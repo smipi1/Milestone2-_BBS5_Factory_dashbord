@@ -4,7 +4,7 @@ By Yvett Smith
 
 This Dashboard will be used mainly by a owner of solar pannels. To have an overwiew of the monthly, daily enery that was produced by the solor pannels. 
 
-The user will also be able to do inspection on usaged and production also will have and idea what is the impact of the sunpower forcast on the production.
+The user will also be able to do inspection on usaged and production and will have and idea what is the impact of the sunpower forcast on the production.
 
 
 Click [here](https://lemoenskil.github.io/Milestone2-_BBS5_Factory_dashbord/) to see the website.
@@ -59,8 +59,8 @@ Stories:
 
 Project Purpose
 I am creating a Data dashboard aimed towards helping current and prospective home solar panel installation owner getting an overview of their production, yield, carbon avoided  and cost.
-The data dashboard will use both D3 and DC to plot multiple charts that will focus on different aspects of the dataset that I am using. The information I will mainly focus on is the energy/power production per day month and year.  I will only include the data from the date of installation from 19 September.   The usage date will be from Jan 2019.   
-The dashboard will also include google map api, and a weather api  the get the data of the correlation map between the energy and sun power.
+The data dashboard will use both D3, leaflet and DC to plot multiple charts that will focus on different aspects of the dataset that I am using. The information I will mainly focus on is the energy/power production per day month and year.  I will only include the data from the date of installation from 19 September.   The usage date will be from Jan 2019.   
+The dashboard will also include google map api. Whith the date from the weat 'knmi Dutch weathe' a  correlation map between the energy and sun power will be ploted
 Why would a user want this?
 In the current state of global warming solar power is a hot topic.  The user will not only want to save the planet but also want to see what is in it for him, and that will be financially.   Also as a user is would be nice to have a look as historical weather data do see what the correlation is between the weather and the production will be.
 The user will also want it to get a one page overview in of his current production vs usage this can help in decisions for example extending the capacity of using the current capacity better.  (example if you want to move from the gas supply to only electrical)
@@ -105,7 +105,14 @@ In the links below you can see the mock-up’s that I drew using the mock-up too
 ![Mobile mockup](assets/desktop_wireframe.JPG)
 - 
 **Note that the final design has changed from the original design in the mock-ups. The reason why it has changed.  I was trying different layouts while I was experimenting and learning the code and sometimes the new designs looked better than the original ones, or was just more responsive. *
+#### Design Ideas
+The layout and the design of the dashboard, will be devided into blocks to give a  professional and of a high standard look. I broke the design down into various style decisions:
 
+##### Font
+I will be using “???” for the dashboard’s main font type, as this is a modern, professional looking font that is easy to read.
+
+##### Colour Scheme
+I am using the “Solar” theme from Bootswatch
 
 ## Features
 
