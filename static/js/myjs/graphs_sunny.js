@@ -1,4 +1,5 @@
-// A $( document ).ready() block.
+var graphs;
+
 $(document).ready(function() {
 
   //Read the dataget 
@@ -13,7 +14,6 @@ $(document).ready(function() {
   const sampleTime = 0.25; // h
   const normalTarif = 0.05250; // EUR / kWh
   const co2_per_kWh = 0.7;
-  var graphs;
 
   function parseRow(csv_row) {
     var d = d3.timeParse("%Y-%m-%dT%H:%M:%S")(csv_row['timestamp']);

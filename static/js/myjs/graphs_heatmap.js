@@ -1,9 +1,9 @@
+var heat_graphs;
 $(document).ready(function() {
     queue()
         .defer(d3.csv, "data/knmi/knmi_20190813.csv", parseKnmiRow)
         .await(makeGrGraphs);
 
-    var heat_graphs;
 
     function parseKnmiRow(d) {
         var date = d3.timeParse("%Y%m%d")(d["YYYYMMDD"]);

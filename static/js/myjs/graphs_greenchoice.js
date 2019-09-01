@@ -1,9 +1,10 @@
+var consuption_graphs;
 $(document).ready(function() {
   queue()
     .defer(d3.csv, "data/greenchoice/greenchoice_energy_usage.csv", parseGrRow)
     .await(makeGrGraphs);
 
-  var consuption_graphs;
+  
 
   function makeGrGraphs(error, greenchoiceData) {
     var ndx = crossfilter(greenchoiceData);

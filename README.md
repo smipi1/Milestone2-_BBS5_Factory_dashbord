@@ -117,19 +117,23 @@ I am using the “Solar” theme from Bootswatch
 ## Features
 
 ### Existing Features
-#### Feature 1 - Navigation bar
-The navigation bar allows users to navigate the site by clicking on links to other pages.  Clicking on the Logo will also take you back to the homepage.  On the Navigation is also Brand name if you hover over it will change colour
-The alert bar also takes you to the contact page.  Then the collapses 'burger icon' dropdown menu in mobile screen sizes to reduce over-crowding and improve user experience.
+#### Feature 1 - Location map
+The google api to show the solar panels on the map with a solar pannel icon.
 
-#### Feature 2 - Jumbotrons 
-Jumbotrons with transparent background has in the top section of the landing page. A button modal with a form
+#### Feature 2 - Summery of Euro and carbon on monitory graphs
+The total euro and total carbon as with the selected graph.
 
-#### Feature 3 - Carousel of images of the band at top of 'About' page
-These large block display, different blocks of what the company can do.
-Users can let the carousel play or select the left and right or the navigation dots beneath the images to move through the carousel.
+#### Feature 3 - Jumbotron
+Jumbotron that give a outline of the Dashboard
 
-#### Feature 4 - Embedded video link
-A 'video' is embedded into the product page which users can press play and pause on at any time to view
+#### Feature 4 - Solorpanel production navbar with dropdowns
+The navbar for the solar production graphs has 2 dropdowns 
+-One where the user can choose a year  but intial year will be 2019.  
+-A drop down to check the euro value or kwh value for the 4 graphs.
+
+#### Feature 4 - Solorpanel monitor graphs
+-3 Bar charts for yearly, monthy and daily data.  Each of them with a reset that is hidden with nothing is selected.
+-Line chart to show the hourly production with reset  the is hidden when nothing is selected.
 
 #### Feature 5 - Small images with 'social media link and email link to contact'
 This is a gallery of the owners with a link to linked in and a email address some of the owners do not have a linked profile yet
