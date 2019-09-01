@@ -131,31 +131,39 @@ The navbar for the solar production graphs has 2 dropdowns
 -One where the user can choose a year  but intial year will be 2019.  
 -A drop down to check the euro value or kwh value for the 4 graphs.
 
-#### Feature 4 - Solorpanel monitor graphs
+#### Feature 4 - Solor panel monitor graphs
 -3 Bar charts for yearly, monthy and daily data.  Each of them with a reset that is hidden with nothing is selected.
--Line chart to show the hourly production with reset  the is hidden when nothing is selected.
+-Line chart to show the hourly production with reset  the is hidden when nothing is selected.  The graph also have a brush on to for selection a certain range.
 
-#### Feature 5 - Small images with 'social media link and email link to contact'
-This is a gallery of the owners with a link to linked in and a email address some of the owners do not have a linked profile yet
+#### Feature 5 - Usage vs production graphs
+-Bar chart with a selector to choose year.  the chart also has a reset function
+-Composite chart with a bar and a line chart to show the prododuction vs the usaga.  The chart is also fitted with a brush selector and reset function.
 
-#### Feature 6 - Social media links in footer and contact icon
-The footer at the bottom of the page has for mobile display only the links and the contact us on which has a hovering colour change.
-In desktop mode the footer has a logo which link you back to the home page.
+#### Feature 6 - Scatter plot
+The scatter plot i have combine date and plotted it kWH, Radiation and Day.
 
-#### Feature 7 - Sign up modal and contact form
-The home page has a modal with a contact us with a form to complete with no require fields
+#### Feature 7 - Heat Map
+-Used leafet to create a map with Radiation date per weather station in the Netherland.
+-The map have a time dimension control player that is the standard one for leaflet.
+--need to check how to reset the map as when you use the player the interactive charts do not work
 
-#### Feature 8 - 'Contact Us' form on 'contact' page
-This form allows users to submit a query by filling out the email, contact number and selection field and a radio button fields and submit their enquiry.
-The form checks for a valid email address, first and last name when entered fields are required (the enquiry cannot be submitted unless these fields are completed).
+#### Feature 8 - Sunpower charts
+-2 Bar charts that are interactive on the heatmap on selected dates
+-Weather station selector where the weather station of choice can be selected.
 
-#### Feature 9 - 'download power point on new page'
-On the training page you get a link where you can download a presentation
+#### Feature 9 - Footer
+Need to update the footer maybe with a link or to or reset button
+
+#### Feature 10 - Data update script
+A phython scrip to combine the daily production files into one file
 
 ### Features Left to Implement
-#### Feature 1 - Add links to small jumbotrons in landing page 
-Would put in pictures and links to the service page in this carousel.
-#### Feature 2 – To add required field to the form in the modal
+#### Feature 1 - Customizing the play  
+-To add a function to reset play and work with interactive maps 
+#### Feature 2 – Try to get live date in for solor pannel production
+-At the moment i have to download my data, I would like te see my current solar production.
+#### Feature 3 – Forecasted sun radiation
+-Will be nice to have the 14 day forcasted radiation to determine expected yield
 
 
 ## Technologies Used
@@ -165,14 +173,18 @@ Would put in pictures and links to the service page in this carousel.
 - HTML5
 - CSS3
 - Bootstrap
-- Microsoft office (to draw up UX and excel)
-- Adobe (convert to)
+- notepad++
+- leafet
 - Font awesome
 - GIT
 - GITHUB
 - Google Chrome developer tools
 - Cloud 9 IDE
-- Javascript and JQuery.
+- Javascript
+- JQuery
+- Python
+- DC, D3 and crossfilter
+- Google map api
 
 ## Testing
 
@@ -233,8 +245,10 @@ https://www.dreamstime.com/terms#using
     Copyright Allexxandar | Dreamstime.com
     https://www.dreamstime.com/allexxandar_info
 
-### Download
-for business case comes form the customer Signify
+### Data sets
+-Sunny portal -production data
+-GreenChoice - energy provider montly usage
+-KNMI -weather data (sun radiation)
 
 ### Work based on other code
 the desktop navbar was re-used from the mini-project,

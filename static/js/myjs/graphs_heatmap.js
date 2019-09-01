@@ -82,7 +82,7 @@ $(document).ready(function() {
 
             }).addTo(map);
         }
-
+      
         //Update the heatmap if any dc chart get filtered
         _.each(heat_graphs, function(dcChart) {
             dcChart.on("filtered", function(chart, filter) {
