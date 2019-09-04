@@ -131,34 +131,34 @@ The navbar for the solar production graphs has 2 dropdowns
 -One where the user can choose a year  but intial year will be 2019.  
 -A drop down to check the euro value or kwh value for the 4 graphs.
 
-#### Feature 4 - Solor panel monitor graphs
+#### Feature 5 - Solor panel monitor graphs
 -3 Bar charts for yearly, monthy and daily data.  Each of them with a reset that is hidden with nothing is selected.
 -Line chart to show the hourly production with reset  the is hidden when nothing is selected.  The graph also have a brush on to for selection a certain range.
 
-#### Feature 5 - Usage vs production graphs
+#### Feature 6 - Usage vs production graphs
 -Bar chart with a selector to choose year.  the chart also has a reset function
 -Composite chart with a bar and a line chart to show the prododuction vs the usaga.  The chart is also fitted with a brush selector and reset function.
 
-#### Feature 6 - Scatter plot
+#### Feature 7 - Scatter plot
 The scatter plot i have combine date and plotted it kWH, Radiation and Day.
 
-#### Feature 7 - Heat Map
+#### Feature 8 - Heat Map
 -Used leafet to create a map with Radiation date per weather station in the Netherland.
 -The map have a time dimension control player that is the standard one for leaflet.
 --need to check how to reset the map as when you use the player the interactive charts do not work
 
-#### Feature 8 - Sunpower charts
+#### Feature 9 - Sunpower charts
 -2 Bar charts that are interactive on the heatmap on selected dates
 -Weather station selector where the weather station of choice can be selected.
 
-#### Feature 9 - Footer
+#### Feature 10 - Footer
 Need to update the footer maybe with a link or to or reset button
 
-#### Feature 10 - Data update script
+#### Feature 11 - Data update script
 A phython scrip to combine the daily production files into one file
 
 ### Features Left to Implement
-#### Feature 1 - Customizing the play  
+#### Feature 1 - Customizing the play functionality on the heatmap  
 -To add a function to reset play and work with interactive maps 
 #### Feature 2 – Try to get live date in for solor pannel production
 -At the moment i have to download my data, I would like te see my current solar production.
@@ -192,14 +192,52 @@ A phython scrip to combine the daily production files into one file
 
 - Used https://validator.w3.org/ in order to validate the HTML code.
 - Used https://jigsaw.w3.org/css-validator/ in order to validate the CSS code.
-After running the validation there was a few errors typos, obsolete and wrong attributes,). there were also warnings which i mostly ignored.
+--JSHINT
 
 ### Features and responsiveness testing
-Testing the website page by page, checking every feature in all possible screen sizes.
+- Location map
+The google api to show the solar panels on the map with a solar pannel icon.
+
+- Summery of Euro and carbon on monitory graphs
+The total euro and total carbon as with the selected graph.
+
+- Jumbotron
+Jumbotron that give a outline of the Dashboard
+
+- Solorpanel production navbar with dropdowns
+The navbar for the solar production graphs has 2 dropdowns 
+-One where the user can choose a year  but intial year will be 2019.  
+-A drop down to check the euro value or kwh value for the 4 graphs.
+
+- Solor panel monitor graphs
+-3 Bar charts for yearly, monthy and daily data.  Each of them with a reset that is hidden with nothing is selected.
+-Line chart to show the hourly production with reset  the is hidden when nothing is selected.  The graph also have a brush on to for selection a certain range.
+
+- Usage vs production graphs
+-Bar chart with a selector to choose year.  the chart also has a reset function
+-Composite chart with a bar and a line chart to show the prododuction vs the usaga.  The chart is also fitted with a brush selector and reset function.
+
+- Scatter plot
+The scatter plot i have combine date and plotted it kWH, Radiation and Day.
+
+- Heat Map
+-Used leafet to create a map with Radiation date per weather station in the Netherland.
+-The map have a time dimension control player that is the standard one for leaflet.
+--need to check how to reset the map as when you use the player the interactive charts do not work
+
+- Sunpower charts
+-2 Bar charts that are interactive on the heatmap on selected dates
+-Weather station selector where the weather station of choice can be selected.
+
+- Footer
+Need to update the footer maybe with a link or to or reset button
+
+- Data update script
+A phython scrip to combine the daily production files into one file
 
 See attached sheet made for testing the responsiveness for mobile to desktop
 
-Click [here]() to see the list use to test the responsiveness
+
 
 ### Additional testing
 Used development tools in Google Chrome to check how the website would look in different devices. Also used it to try different style and ideas.   

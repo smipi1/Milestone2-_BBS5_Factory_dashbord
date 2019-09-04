@@ -32,7 +32,10 @@ main{
     margin: 0px;
 }
 
-
+ul{ 
+    list-style-type: none; 
+    
+}
 .monitor_graphs{
    /* background-color: #29ABE0;*/
     background-size:cover;
