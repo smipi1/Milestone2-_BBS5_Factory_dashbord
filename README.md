@@ -87,7 +87,6 @@ There will also be summaries with some text included on the page to explain the 
 
 ### Structure Plane
 
-
 Information Architecture
 Will be a simple tree structure using a horizontal bar near the top of the page taking up the right        two thirds of the page.
 Interaction Design (IXD)
@@ -112,7 +111,7 @@ The layout and the design of the dashboard, will be devided into blocks to give 
 I will be using “???” for the dashboard’s main font type, as this is a modern, professional looking font that is easy to read.
 
 ##### Colour Scheme
-I am using the “Solar” theme from Bootswatch
+I am using the “Sandstone” theme from Bootswatch
 
 ## Features
 

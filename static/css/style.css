@@ -7,12 +7,33 @@ html, body {
   height: 100%;
 /*  overflow: hidden;*/
 }
-/*body {
-  overflow: auto;
-}*/
+
 main{
     overflow: hidden;
 }
+
+.cb_remove_padding{
+    padding: 0px;
+}
+
+.allign_section{
+    display: inline;
+    padding:0px;
+}
+
+.row{
+    margin:0px;
+}
+
+.card_select{
+    padding: 0px;
+}
+
+.graph_cal{
+    width: 100%;
+}
+
+/*--------------------------------------------Header navbar*/
 .logo-nav {
     background: url("../../assets/sunny.jpg");
     background-position: right;
@@ -32,17 +53,28 @@ main{
     margin: 0px;
 }
 
+/*--------------------------------------------Jumbothron*/
 ul{ 
     list-style-type: none; 
-    
 }
+
+.jumbotron {
+    margin:0px;
+}
+
+.container_jumbo {
+    margin:0px 10px 0px 10px;
+    text-align:center;
+    display:inline;
+}
+
+
+/*--------------------------------------------monitor graphs*/
+
 .monitor_graphs{
-   /* background-color: #29ABE0;*/
     background-size:cover;
     margin: 0px;
     text-align: center;
-
-    
 }
 
 .monitor_graphs_selector_style{
@@ -50,20 +82,9 @@ ul{
     max-height:100px;
 }
 
-.scater usage_style_graph{
-    max-width: 100%; 
-    max-height:100%;
-}
-
-.cb_remove_padding{
-    padding: 0px;
-}
 .headings_graphs_sections{
     margin:0px;
     padding:0px;
-    /*width: 100%;*/
-   
-
 }
 .allign_icon_panel{
     padding-top: 3px;
@@ -73,25 +94,6 @@ ul{
     
    
 }
-.allign_section{
-    display: inline;
-    padding:0px;
-}
-
-.row{
-    margin:0px;
-}
-
-/*--------------------------------------------Map*/
-#map {
-    min-height: 150px;
-    width: 100%;
-    display:inline-block;
-    padding:0px;
-
-
-
-}
 #house {
     background: url("../../assets/house.jpg");
     background-size:cover;
@@ -99,16 +101,14 @@ ul{
     width: 100%;
 }
 
-.heat_map_style{
-    max-width: 100%; 
-    max-height:100%; 
-    display:block;
+#map {
+    min-height: 150px;
+    width: 100%;
+    display:inline-block;
+    padding:0px;
+
 }
-#heat_map{
-    width: 100%; 
-    min-height: 500px; 
-    display: inline-block;
-}
+
 #instalation {
     background: url("../../assets/system profile.JPG");
     background-position: center;
@@ -136,7 +136,7 @@ ul{
     -o-transition: all 1s ease-in-out;
     -webkit-transition: all 1s ease-in-out;
 }
- .number-box {
+.number-box {
         width: 200px;
         font-size: 40px;
         text-align: center;
@@ -144,7 +144,7 @@ ul{
         padding-bottom: 63px;
         height: 74px;
         line-height: normal;
-      }
+}
      
 #euro {
     background: url("../../assets/money-icon-transparent-background-15.png");
@@ -160,22 +160,19 @@ ul{
     -webkit-transition: all 1s ease-in-out;
 }
 
-.card_select{
-    padding: 0px;
+/*------------------------------------------Heat-Map and graphs*/
+
+.heat_map_style{
+    max-width: 100%; 
+    max-height:100%; 
+    display:block;
+}
+#heat_map{
+    width: 100%; 
+    min-height: 500px; 
+    display: inline-block;
 }
 
-.graph_cal{
-    width: 100%;
-}
-/*.calender_g{
-    overflow: scroll;
-}*/
-#g_e_usaged{
-     text-align:center;
-}
-#g_usagevproduction{
-     text-align:center;
-}
 
 #sunpower_month{
     display:inline-block;
@@ -186,6 +183,25 @@ ul{
     text-align:center;
 }
 
+
+
+
+/*------------------------------------------Scatter_graph*/
+
+.scater_usage_style_graph{
+    max-width: 100%; 
+    max-height:100%;
+}
+/*------------------------------------------Usage vs production graphs*/
+#g_e_usaged{
+     text-align:center;
+}
+#g_usagevproduction{
+     text-align:center;
+}
+
+
+/*------------------------------------------Footer*/
 .footer {
     min-height: 50px;
     background-color: #29ABE0;
@@ -194,15 +210,6 @@ ul{
     width: 100%;
 }
 
-.jumbotron {
-    margin:0px;
-}
-
-.container_jumbo {
-    margin:0px 10px 0px 10px;
-    text-align:center;
-    display:inline;
-}
 
 
 
