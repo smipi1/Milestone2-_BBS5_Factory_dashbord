@@ -108,7 +108,7 @@ In the links below you can see the mock-up’s that I drew using the mock-up too
 The layout and the design of the dashboard, will be devided into blocks to give a  professional and of a high standard look. I broke the design down into various style decisions:
 
 ##### Font
-I will be using “???” for the dashboard’s main font type, as this is a modern, professional looking font that is easy to read.
+I will be using “Roboto” that comes with the bootwatch template.
 
 ##### Colour Scheme
 I am using the “Sandstone” theme from Bootswatch
@@ -117,7 +117,7 @@ I am using the “Sandstone” theme from Bootswatch
 
 ### Existing Features
 #### Feature 1 - Navbar
-the navbar has the logo and name with a reset button
+the navbar has the logo and name with a floating reset button
 
 #### Feature 2 - Location map
 The google api to show the solar panels on the map with a solar pannel icon.
@@ -202,14 +202,14 @@ A phython scrip to combine the daily production files into one file
 The navbar was test on responsiveness and the reset button was changed to a floating one to make it easier to reset
 
 - Location map and picture
-for mobile I have removed the picture as was not scaling well and was crouded
+for mobile I have removed the picture for mobile as was not scaling well and was crowded
 
 
 - Summery of Euro and carbon on monitory graphs
-The total euro and total carbon as with the selected graph.
+The total euro and total carbon has been hidden for mobile with media as with the tesing i saw there was no overview on small screens
 
 - Jumbotron
-Jumbotron that give a outline of the Dashboard
+Jumbotron the font was adjusted and a mediaQuerie was added to for easy read on smaller schreens
 
 - Solorpanel production navbar with dropdowns
 The navbar for the solar production graphs has 2 dropdowns 

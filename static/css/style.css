@@ -209,7 +209,9 @@ ul{
     -o-transition: all 1s ease-in-out;
     -webkit-transition: all 1s ease-in-out;
 }
-
+.euro-select, .carbon-select{
+    display:none;
+}
 /*------------------------------------------Heat-Map and graphs*/
 #location-selector{
     float:right;
@@ -291,6 +293,10 @@ ol, ul, dl {
     margin-top: 0;
     margin-bottom: 1.2rem;
     font-size: 1.2rem;
+}
+
+.euro-select, .carbon-select{
+    display:inline;
 }
 }
 
