@@ -222,11 +222,12 @@ The navbar for the solar production graphs has been test and the sizing has been
 -Line chart that show the hourly production with reset and brush worked.
 
 - Usage vs production graphs
--Bar chart with a selector to choose year.  the chart also has a reset function
--Composite chart with a bar and a line chart to show the prododuction vs the usaga.  The chart is also fitted with a brush selector and reset function.
+-Bar chart with a selector to choose year, and the reset function has been tested
+-and the selection has been tested that only that the group empty of when selection a new bar.
+-A scroll bar was added for responsiveness
 
 - Scatter plot
-The scatter plot i have combine date and plotted it kWH, Radiation and Day.
+Added a scroll bar for responsiveness, and changed the colors to fit while testing
 
 - Heat Map
 -Used leafet to create a map with Radiation date per weather station in the Netherland.
