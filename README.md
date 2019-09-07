@@ -198,8 +198,12 @@ A phython scrip to combine the daily production files into one file
 --JSHINT
 
 ### Features and responsiveness testing
-- Location map
-The google api to show the solar panels on the map with a solar pannel icon.
+- Navbar
+The navbar was test on responsiveness and the reset button was changed to a floating one to make it easier to reset
+
+- Location map and picture
+for mobile I have removed the picture as was not scaling well and was crouded
+
 
 - Summery of Euro and carbon on monitory graphs
 The total euro and total carbon as with the selected graph.
