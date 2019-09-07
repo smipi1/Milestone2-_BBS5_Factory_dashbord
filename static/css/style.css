@@ -37,13 +37,27 @@ main{
 .nav_header{
     float:right;
 }
-.nav_button{
-    display:inline;
-}
+
 .reset-filters {
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	z-index: 9999;
+    cursor: pointer;
+    color: #fff;
+    background-color: #29ABE0;
+    border-color: #29ABE0;
 }
 
 .reset-filters:hover {
@@ -240,12 +254,23 @@ ul{
     width: 100%;
 }
 
+/*------------------------------------------mediaQueries*/
 
-
-
-
-
-
+@media (min-width: 768px){
+.float{
+	position:fixed;
+    width: 100px;
+    height: 60px;
+    left: 10px;
+    top: 10px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	z-index: 9999;
+    color: #fff;
+    background-color: #29ABE0;
+    border-color: #29ABE0;
+}
+}
 
 
 
