@@ -81,6 +81,7 @@ $(document).ready(function() {
             .renderHorizontalGridLines(true)
             // .controlsUseVisibility(true)
             // .mouseZoomable(true)
+            .colors("orange")
             .addFilterHandler(function(filters, filter) { return [filter]; })
             .elasticX(true)
             .elasticY(true)
