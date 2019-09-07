@@ -37,9 +37,9 @@ $(document).ready(function() {
     var ndx = crossfilter(data);
 
     updateGraphs(ndx, "kWh");
-    graphs.yearSelector.replaceFilter([
-      ["2019"]
-    ]).redrawGroup(); //  set as default when loading fist time
+    // graphs.yearSelector.replaceFilter([
+    //   ["2019"]
+    // ]).redrawGroup(); //  set as default when loading fist time
 
     $("#value_type").change(function() {
       // User changed how to display values: kWh vs Euro
