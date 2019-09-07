@@ -31,7 +31,7 @@ $(document).ready(function() {
     }
   }
 
-
+  var updateDailyTicks;
 
   function makeGraphs(data) {
     var ndx = crossfilter(data);
@@ -53,6 +53,9 @@ $(document).ready(function() {
         // Display graphs for kWh
         $('#g_hour').show();
       }
+    });
+    _.each(graphs, function(chart) {
+      chart.on("filtered", updateDailyTicks);
     });
   }
 
@@ -148,7 +151,36 @@ $(document).ready(function() {
       .renderHorizontalGridLines(true)
       .controlsUseVisibility(true)
       .addFilterHandler(function(filters, filter) { return [filter]; });
-    chart.xAxis().tickFormat(d3.timeFormat('%_d')); // https://github.com/d3/d3-time-format
+
+    updateDailyTicks = function() {
+      var lastDay = dim.top(1)[0].day;
+      var firstDay = dim.bottom(1)[0].day;
+      var msecDiff = lastDay - firstDay;
+      const msecPerDay = 1000 * 60 * 60 * 24;
+      var nrDays = msecDiff / msecPerDay + 1;
+
+      var isOneMonth = nrDays <= 31;
+      var ticks = [];
+      dim.group().all().forEach(function(item) {
+        var isFirstDayOfMonth = item.key.getDate() === 1;
+        if (item.key < firstDay)
+          return;
+        if (item.key > lastDay)
+          return;
+        if (isOneMonth || isFirstDayOfMonth) {
+          ticks.push(item.key);
+        }
+      });
+      chart.xAxis().tickValues(ticks);
+      if (isOneMonth) {
+        chart.xAxis().tickFormat(d3.timeFormat('%_d')); // day of month
+      }
+      else {
+        chart.xAxis().tickFormat(d3.timeFormat('%b')); // short month name
+      }
+    }
+
+    updateDailyTicks(chart);
 
     return chart;
   }
