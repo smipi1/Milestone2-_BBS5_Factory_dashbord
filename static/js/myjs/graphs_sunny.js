@@ -98,7 +98,7 @@ $(document).ready(function() {
     var group = dim.group().reduceSum(dc.pluck('power'));
     var nonEmpty = remove_empty_bins(group);
     var chart = dc.lineChart("#g_hour")
-      .width(400)
+      .width(350)
       .height(400)
       .margins({ top: 10, right: 50, bottom: 30, left: 50 })
       .dimension(dim)
@@ -131,7 +131,7 @@ $(document).ready(function() {
     var group = dim.group().reduceSum(dc.pluck('kWh'));
     var nonEmpty = remove_empty_bins(group);
     var chart = dc.barChart("#g_day")
-      .width(400)
+      .width(350)
       .height(400)
       .margins({ top: 10, right: 50, bottom: 30, left: 50 })
       .dimension(dim)
@@ -160,7 +160,7 @@ $(document).ready(function() {
     var group = dim.group().reduceSum(dc.pluck(value_type));
     var nonEmpty = remove_empty_bins(group);
     var chart = dc.barChart("#g_month")
-      .width(400)
+      .width(350)
       .height(400)
       .margins({ top: 10, right: 50, bottom: 30, left: 50 })
       .dimension(dim)
@@ -191,7 +191,7 @@ $(document).ready(function() {
     var group = dim.group().reduceSum(dc.pluck(value_type));
     var nonEmpty = remove_empty_bins(group);
     var chart = dc.barChart("#g_year")
-      .width(400)
+      .width(350)
       .height(400)
       .margins({ top: 10, right: 50, bottom: 30, left: 50 })
       .dimension(dim)

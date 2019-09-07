@@ -217,8 +217,9 @@ The navbar for the solar production graphs has been test and the sizing has been
 -Euro value or kwh value for the 4 graphs. Was tested and work and the y axis label change to Euro.
 
 - Solor panel monitor graphs
--3 Bar charts for yearly, monthy and daily data.  Each of them with a reset that is hidden with nothing is selected.
--Line chart to show the hourly production with reset  the is hidden when nothing is selected.  The graph also have a brush on to for selection a certain range.
+-Testing on small mobile i had to add the scroll bar, which was not needed for the rest
+-Tested the 3 Bar charts for yearly, monthy and daily data.  The reset buttons where functional and and separete cliking on the bars worked.
+-Line chart that show the hourly production with reset and brush worked.
 
 - Usage vs production graphs
 -Bar chart with a selector to choose year.  the chart also has a reset function

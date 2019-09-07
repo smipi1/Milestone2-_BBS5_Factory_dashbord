@@ -212,7 +212,17 @@ ul{
 .euro-select, .carbon-select{
     display:none;
 }
+
+.calender_g{
+    overflow-x:scroll;
+    padding:0px;
+
+
+}
+
+
 /*------------------------------------------Heat-Map and graphs*/
+
 #location-selector{
     float:right;
 }
@@ -301,4 +311,9 @@ ol, ul, dl {
 }
 
 
-
+@media (min-width: 375px){
+.calender_g{
+    overflow-x:hidden;
+    padding:0px;
+}
+}
