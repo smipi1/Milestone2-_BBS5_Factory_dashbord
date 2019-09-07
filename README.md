@@ -212,9 +212,9 @@ The total euro and total carbon has been hidden for mobile with media as with th
 Jumbotron the font was adjusted and a mediaQuerie was added to for easy read on smaller schreens
 
 - Solorpanel production navbar with dropdowns
-The navbar for the solar production graphs has 2 dropdowns 
--One where the user can choose a year  but intial year will be 2019.  
--A drop down to check the euro value or kwh value for the 4 graphs.
+The navbar for the solar production graphs has been test and the sizing has been change to fit better on the small mobile
+-intial year will be 2019. that work and also selecting 2018 works but when you have selected on the graph you can not use this filter before resetting it  
+-Euro value or kwh value for the 4 graphs. Was tested and work and the y axis label change to Euro.
 
 - Solor panel monitor graphs
 -3 Bar charts for yearly, monthy and daily data.  Each of them with a reset that is hidden with nothing is selected.
