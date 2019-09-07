@@ -230,9 +230,10 @@ The navbar for the solar production graphs has been test and the sizing has been
 Added a scroll bar for responsiveness, and changed the colors to fit while testing
 
 - Heat Map
--Used leafet to create a map with Radiation date per weather station in the Netherland.
--The map have a time dimension control player that is the standard one for leaflet.
---need to check how to reset the map as when you use the player the interactive charts do not work
+-test the play function and working on the map.
+-Added a scroll to make it more responsive to small mobiles
+-Test all the reset button and station selector.
+-Test interactiveness with graph and heatmap
 
 - Sunpower charts
 -2 Bar charts that are interactive on the heatmap on selected dates

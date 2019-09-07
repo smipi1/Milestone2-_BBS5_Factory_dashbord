@@ -41,7 +41,8 @@ $(document).ready(function() {
             timeDimension: true,
             timeDimensionOptions: {
                 timeInterval: timeInterval,
-                period: "P1D"
+                period: "P1D",
+                height: "20px"
             },
             timeDimensionControl: true,
         });
