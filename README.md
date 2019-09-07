@@ -116,44 +116,48 @@ I am using the “Sandstone” theme from Bootswatch
 ## Features
 
 ### Existing Features
-#### Feature 1 - Location map
+#### Feature 1 - Navbar
+the navbar has the logo and name with a reset button
+
+#### Feature 2 - Location map
 The google api to show the solar panels on the map with a solar pannel icon.
 
-#### Feature 2 - Summery of Euro and carbon on monitory graphs
+#### Feature 3 - Summery of Euro and carbon on monitory graphs
 The total euro and total carbon as with the selected graph.
 
-#### Feature 3 - Jumbotron
+#### Feature 4 - Jumbotron
 Jumbotron that give a outline of the Dashboard
 
-#### Feature 4 - Solorpanel production navbar with dropdowns
+#### Feature 5 - Solorpanel production navbar with dropdowns
 The navbar for the solar production graphs has 2 dropdowns 
 -One where the user can choose a year  but intial year will be 2019.  
 -A drop down to check the euro value or kwh value for the 4 graphs.
 
-#### Feature 5 - Solor panel monitor graphs
+#### Feature 6 - Solor panel monitor graphs
 -3 Bar charts for yearly, monthy and daily data.  Each of them with a reset that is hidden with nothing is selected.
 -Line chart to show the hourly production with reset  the is hidden when nothing is selected.  The graph also have a brush on to for selection a certain range.
 
-#### Feature 6 - Usage vs production graphs
+#### Feature 7 - Usage vs production graphs
 -Bar chart with a selector to choose year.  the chart also has a reset function
 -Composite chart with a bar and a line chart to show the prododuction vs the usaga.  The chart is also fitted with a brush selector and reset function.
 
-#### Feature 7 - Scatter plot
+#### Feature 8 - Scatter plot
 The scatter plot i have combine date and plotted it kWH, Radiation and Day.
 
-#### Feature 8 - Heat Map
+#### Feature 9 - Heat Map
 -Used leafet to create a map with Radiation date per weather station in the Netherland.
 -The map have a time dimension control player that is the standard one for leaflet.
 --need to check how to reset the map as when you use the player the interactive charts do not work
 
-#### Feature 9 - Sunpower charts
+#### Feature 10 - Sunpower charts
 -2 Bar charts that are interactive on the heatmap on selected dates
 -Weather station selector where the weather station of choice can be selected.
+-As I have the problem that I do not know how to reset the heatmap yet i have put a reset button for the map to use with the interactive charts.
 
-#### Feature 10 - Footer
-Need to update the footer maybe with a link or to or reset button
+#### Feature 11 - Footer
+The footer has some reference and a reset button with a hover function
 
-#### Feature 11 - Data update script
+#### Feature 12 - Data update script
 A phython scrip to combine the daily production files into one file
 
 ### Features Left to Implement

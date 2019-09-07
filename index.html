@@ -42,9 +42,16 @@
 
 <body>
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light logo-nav">
-        <h1 class="main_nav_header">Solar Factory BBS5</h1>
+<header class= "row">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light logo-nav col-12">
+        <div class="nav_header col-11">
+          <h1 class="main_nav_header">Solar Factory BBS5</h1>  
+        </div>
+        <div class="nav_button col-1">
+          <button type="button" onclick="location.reload()" class="btn reset-filters btn-info">Reset Filters</button>  
+        </div>
+        
+            
     </nav>
 
 </header>
@@ -217,10 +224,13 @@
                 <div class="card text-white bg-primary col-12 col-lg-6 heat_map_style">
                     <div class="card-header card_select">Sun power</div>
                     <div class="card-body cb_remove_padding">
-                        <div id="location-selector" class="col-sm-12" >
+                        <div id="location-selector" class="col-sm-6" >
                             <p> choose Weather Station</p>
                         </div>
-    
+                        <div class="col-sm-6">
+                            <p>Before selection on graps reset map to stop player</p>
+                        <button type="button" onclick="location.reload()" class="btn btn-secondary reset-map">Reset page and map</button>
+                        </div>
                         <div id="sunpower_month" class="col-12 col-lg-6 calender_g">
                             <div class="reset " style="visibility: hidden; ">selected: <span class="filter "></span>
                                 <a href="javascript:heat_graphs.monthly.filterAll();dc.redrawAll(); ">reset</a>
@@ -243,7 +253,7 @@
     <footer class="container-fluid footer">
         <div class="row footer-content">
             <div class="col-xs-12 col-sm-6">
-                <div class="footer-links">Original datasets from KNMI, GreenChoice and Sunny Portal <span><a href="" target="_blank"></a></span>.</div>
+                 <button type="button" onclick="location.reload()" class="btn reset-filters btn-info">Reset Filters</button> 
             </div>
             <div class="col-xs-12 col-sm-6">
                 <div><a href="" class="footer-links" target="_blank">&copy;2019 Yvette Smith</a></div>

@@ -34,6 +34,26 @@ main{
 }
 
 /*--------------------------------------------Header navbar*/
+.nav_header{
+    float:right;
+}
+.nav_button{
+    display:inline;
+}
+.reset-filters {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.reset-filters:hover {
+    background-color: #8E8C84;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+
 .logo-nav {
     background: url("../../assets/sunny.jpg");
     background-position: right;
@@ -161,6 +181,9 @@ ul{
 }
 
 /*------------------------------------------Heat-Map and graphs*/
+#location-selector{
+    float:right;
+}
 
 .heat_map_style{
     max-width: 100%; 
@@ -183,6 +206,13 @@ ul{
     text-align:center;
 }
 
+.reset-map:hover {
+    background-color: #3E3F3A;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
 
 
 
