@@ -114,10 +114,7 @@ $(document).ready(function() {
       .x(d3.scaleTime())
       .controlsUseVisibility(true)
       .renderHorizontalGridLines(true)
-      .colors(["orange"])
-      .xAxisLabel(function(d) {
-        console.log(d);
-      });
+      .colors(["orange"]);
     // .xUnits(dc.units.ordinal);
     // .xAxisLabel(day[0].date)
     // chart.yAxis().ticks(20);
